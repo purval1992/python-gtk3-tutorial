@@ -7,7 +7,7 @@ Contents:
 
 .. toctree::
    :titlesonly:
-   
+
    introduction
    gettingstarted
    packingtheory
@@ -126,6 +126,8 @@ Contents:
    cellrendererprogress
    cellrendererpixbuf
    cellrendereraccel
+   treemodelsort
+   treemodelfilter
    iconview
    listbox
    flowbox
