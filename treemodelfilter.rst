@@ -25,3 +25,12 @@ The TreeModelFilter can be refiltered using the method::
 A convenience function can be used to return the model being filtered::
 
   model = treemodefilter.get_model()
+
+=======
+Example
+=======
+Below is an example of a TreeModelFilter:
+
+.. literalinclude:: _examples/treemodelfilter.py
+
+Download: :download:`TreeModelFilter <_examples/treemodelfilter.py>`
