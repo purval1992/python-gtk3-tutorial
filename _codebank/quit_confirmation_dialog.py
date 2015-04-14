@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Provides an example of asking the user to confirm they wish to quit the
+# application.
+
 from gi.repository import Gtk
 
 

@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Shows how to allow closing of tabs within a Notebook widget via
+# middle-clicking, as seen in the Firefox Web Browser and Thunar File Manager.
+
 from gi.repository import Gtk
 
 
