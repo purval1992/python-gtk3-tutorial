@@ -70,4 +70,8 @@ The ``"activate"`` signal is emitted when the user either single-clicks or doubl
 =======
 Example
 =======
-FlowBox example currently unavailable.
+Below is an example of a FlowBox:
+
+.. literalinclude:: _examples/flowbox.py
+
+Download: :download:`FlowBox <_examples/flowbox.py>`

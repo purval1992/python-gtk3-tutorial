@@ -1,6 +1,8 @@
 Clipboard
 =========
-A Clipboard is an invisible object within GTK+ that provides the ability to copy content to and from your application. The content can range from text, images, audio, or video.
+The clipboard provides a temporary memory store of data, and is typically used to allow objects such as text, images, audio, video or files to be transferred between locations or applications. The most typical way of using the clipboard involves cutting/copying and subsequently pasting in the desired location, and this is done using keyboard shortcuts or a widget such as a :doc:`button` or :doc:`menuitem`.
+
+On the Linux system, there are two clipboards. The most commonly used is the standard clipboard used to store images, files, etc. in addition to text. The other is the primary which holds the currently highlighted text and is accessed by middle-clicking in the desired location.
 
 .. note::
 
