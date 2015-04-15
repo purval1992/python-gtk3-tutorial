@@ -70,6 +70,10 @@ Spaicing between lines can be modified by specifying the number of pixels::
   textview.set_pixels_above_lines(pixels)
   textview.set_pixels_below_lines(pixels)
 
+To request that the TextView use monospaced font in the view, use the method::
+
+  textview.set_monospace(monospace)
+
 =======
 Signals
 =======
