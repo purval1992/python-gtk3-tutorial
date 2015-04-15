@@ -6,7 +6,7 @@ Entry widgets provide a way for the user to enter text. Usually they are tailore
 Constructor
 ===========
 The Entry can be constructed using::
-  
+
   entry = Gtk.Entry(entrybuffer)
 
 The *entrybuffer* parameter should be set to an :doc:`/entrybuffer` if required. In most cases, it won't be needed and can be omitted.
@@ -55,6 +55,10 @@ When *visibility* is set to ``False``, eah character will be masked with a ``*``
 The mask character can be changed if required via::
 
   entry.set_invisible_char(character)
+
+By default, when an Entry is focused, the text within the Entry is selected. In cases where the user is not likely to want to replace all the text, an alternative function can be used to provide focus but not select the text::
+
+  entry.grab_focus_without_selecting()
 
 In some cases, it is preferable to have the Entry perform an action when the user presses :kbd:`Enter`. Commonly this would be a continue function in a dialog::
 
