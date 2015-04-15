@@ -40,6 +40,12 @@ Retrieving the position from the Paned widget is done via the method::
 
 The *position* value returned is the number of pixels wide the left or top pane is. This is useful when saving the application configuration to a file.
 
+The Paned object also supports a wide-handle, which makes adjustments to the Paned sizes easier::
+
+  paned.set_wide_handle(wide_handle)
+
+When *wide_handle* is set to ``True``, the wide-handle view is enabled.
+
 =======
 Signals
 =======
