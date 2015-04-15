@@ -51,6 +51,7 @@ Contents:
    notebook
    stack
    stackswitcher
+   stacksidebar
    scale
    scrollbar
    scrolledwindow
