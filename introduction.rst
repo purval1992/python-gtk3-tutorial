@@ -11,7 +11,7 @@ Prior knowledge of GTK+ is not required.
 ===================
 About this tutorial
 ===================
-This guide assumes that you are using the Python 3.4 series and that you are using GTK+ 3.14 and an as-up-to-date version of Python-GObject as possible. The newer the Python-GObject version, the less likely there are to be issues. Older versions will work for some examples.
+This guide assumes that you are using the Python 3.4 series and that you are using GTK+ 3.16 and an as-up-to-date version of Python-GObject as possible. The newer the Python-GObject version, the less likely there are to be issues. Older versions will work for some examples.
 
 To see which version of GTK+ you have installed, run the following script to check the verison number.
 

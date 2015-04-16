@@ -6,7 +6,7 @@ A Label widget can be used to display anything from small to large amounts of te
 Constructor
 ===========
 The Label can be constructed using the following::
-  
+
   label = Gtk.Label(label)
 
 The *label* parameter should be set to display the text within the Label widget.
@@ -63,6 +63,20 @@ Text can be wrapped in the label if required with::
   label.set_line_wrap(wrap)
 
 The *wrap* setting in ``.set_line_wrap()`` when set to ``True`` enforces line wrapping if the line is too long.
+
+The text within the label can be aligned both horizontally and/or vertically with::
+
+  label.set_xalign(xalign)
+  label.set_yalign(yalign)
+
+The *xalign* and *yalign* properties should be a value between ``0.0`` and ``1.0``, with ``0.0`` indicating left or top and ``1.0`` indicating right or bottom.
+
+The alignment can also be retrieved via::
+
+  xalign = label.get_xalign()
+  yalign = label.get_yalign()
+
+By default, the label alignment values are 0.5 (centered) for both horizontal and vertical planes.
 
 =======
 Signals
