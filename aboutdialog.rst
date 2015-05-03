@@ -6,10 +6,8 @@ The AboutDialog is found in virtually all non-trivial applications. It provides 
 Constructor
 ===========
 The AboutDialog can be constructed using::
-  
-  aboutdialog = Gtk.AboutDialog(parent)
 
-The *parent* value should be set to the name of the :doc:`window` or :doc:`dialog` which owns the AboutDialog.
+  aboutdialog = Gtk.AboutDialog()
 
 =======
 Methods
@@ -26,10 +24,35 @@ Once constructed, the AboutDialog will be void of information with the exception
   aboutdialog.set_documenters([documenters])
   aboutdialog.set_artists([artists])
   aboutdialog.set_logo(filepath)
-  aboutdialog.set_license(license)
   aboutdialog.set_wrap_license(wrap)
 
 Most of the options are self-explanatory and take a string of text. The ``.set_comments()`` method is a simple message about what the application is or does. The ``.set_wrap_license()`` method tells the license text to be displayed neatly within the dialog window, and should in most cases will be set to ``True``. The ``.set_authors()``, ``.set_documenters()`` and ``.set_artists()`` methods take a Python list of values, with each persons name separated by a comma and contained within square brackets.
+
+The license used by the program can be set with::
+
+  aboutdialog.set_license_type(license)
+
+The *license* value can be set to a number of built-in license types:
+
+* ``Gtk.License.UNKNOWN``
+* ``Gtk.License.CUSTOM``
+* ``Gtk.License.GPL_2_0``
+* ``Gtk.License.GPL_3_0``
+* ``Gtk.License.LGPL_2_1``
+* ``Gtk.License.LGPL_3_0``
+* ``Gtk.License.BSD``
+* ``Gtk.License.MIT_X11``
+* ``Gtk.License.ARTISTIC``
+* ``Gtk.License.GPL_2_0_ONLY``
+* ``Gtk.License.GPL_3_0_ONLY``
+* ``Gtk.License.LGPL_2_1_ONLY``
+* ``Gtk.License.LGPL_3_0_ONLY``
+
+A new section for credits can be added with::
+
+  aboutdialog.add_credit_section(name, people, people...)
+
+The *name* value determines the name of the section in the display. One or multiple *people* values can be added to each section.
 
 To display, and then subsequently remove the AboutDialog from view use::
 
