@@ -16,7 +16,7 @@ Methods
 =======
 If required, the model attached to the TreeModelSort can be retrieved via::
 
-  model = treemodelsort.get_model()
+  treemodelsort.get_model()
 
 Basic sorting is achievable by using::
 
@@ -29,6 +29,13 @@ Custom sorting, used typically for the ability of sorting by multiple columns is
   treemodelsort.set_sort_func(column, function, data)
 
 The *column* value specified is the column where the sort function to be applied. The *function* parameter is the name of the function where the sorting comparison will be done. Specifying the *data* parameter can also be done which provides data to be sorted, or alternatively can be left out entirely.
+
+As the TreeModelSort sits between the viewing widget and data model, the correct TreeIter or TreePath for the underlying model is not returned. These need to be converted using::
+
+  treemodelsort.convert_iter_to_child_iter(treeiter)
+  treemodelsort.convert_path_to_child_path(treepath)
+
+Both functions return the TreeIter or TreePath for the unsorted model.
 
 =======
 Example
