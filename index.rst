@@ -142,5 +142,6 @@ Contents:
    socket
    application
    clipboard
+   printoperation
    commonmethods
    glossary
