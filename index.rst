@@ -73,6 +73,7 @@ Contents:
    radiomenuitem
    separatormenuitem
    menubutton
+   popover
    toolbar
    toolpalette
    toolitemgroup
