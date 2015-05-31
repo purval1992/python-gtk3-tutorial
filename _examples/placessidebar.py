@@ -10,7 +10,7 @@ def open_link(placessiderbar, location, flags):
 file = Gio.File.new_for_uri("/mnt/test")
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 placessidebar = Gtk.PlacesSidebar()
 placessidebar.add_shortcut(file)

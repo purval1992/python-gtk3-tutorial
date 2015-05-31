@@ -6,11 +6,11 @@ def event(widget, event):
     if event.button == 3:
         menu.popup(None, None, None, None, event.button, event.time)
         menu.show_all()
-    
+
     return True
-    
+
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 grid = Gtk.Grid()
 window.add(grid)

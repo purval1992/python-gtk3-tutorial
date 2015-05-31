@@ -3,7 +3,7 @@
 from gi.repository import Gtk
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 image = Gtk.Image()
 image.set_from_file("gtk.png")

@@ -4,7 +4,7 @@ from gi.repository import Gtk
 
 window = Gtk.Window()
 window.set_default_size(400, 300)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 stack = Gtk.Stack()
 window.add(stack)

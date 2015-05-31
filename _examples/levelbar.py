@@ -5,7 +5,7 @@ import random
 
 window = Gtk.Window()
 window.set_default_size(150, -1)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 levelbar = Gtk.LevelBar()
 levelbar.set_min_value(0)

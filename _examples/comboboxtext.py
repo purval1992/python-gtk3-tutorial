@@ -3,10 +3,10 @@
 from gi.repository import Gtk
 
 def comboboxtext_changed(comboboxtext):
-	print(comboboxtext.get_active_text())
+    print(comboboxtext.get_active_text())
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 comboboxtext = Gtk.ComboBoxText()
 comboboxtext.append("gnome", "GNOME")

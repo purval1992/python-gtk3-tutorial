@@ -10,7 +10,7 @@ def accel_cleared(cellrendereraccel, path):
     liststore[path][1] = "None"
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 liststore = Gtk.ListStore(str, str)
 liststore.append(["New", "<Primary>n"])

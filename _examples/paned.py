@@ -4,7 +4,7 @@ from gi.repository import Gtk
 
 window = Gtk.Window()
 window.set_default_size(400, 200)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 hpaned = Gtk.Paned()
 hpaned.set_position(150)

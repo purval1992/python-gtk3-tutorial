@@ -4,11 +4,11 @@ from gi.repository import Gtk, GdkX11
 import cairo
 
 def expose(drawingarea, context):
-    
+    pass
 
 window = Gtk.Window()
 window.set_default_size(600, 400)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 drawingarea = Gtk.DrawingArea()
 

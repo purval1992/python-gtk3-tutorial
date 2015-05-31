@@ -4,7 +4,7 @@ from gi.repository import Gtk
 
 window = Gtk.Window()
 window.set_default_size(400, 200)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
 box.set_homogeneous(True)

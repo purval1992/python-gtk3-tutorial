@@ -7,7 +7,7 @@ def row_activated(listbox, listboxrow):
 
 window = Gtk.Window()
 window.set_default_size(200, 200)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 listbox = Gtk.ListBox()
 listbox.connect("row-activated", row_activated)

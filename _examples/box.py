@@ -1,8 +1,9 @@
 #/usr/bin/env python3
-  
+
 from gi.repository import Gtk
 
 window = Gtk.Window()
+window.connect("destroy", Gtk.main_quit)
 
 box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
 window.add(box)

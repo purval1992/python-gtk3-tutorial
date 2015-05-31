@@ -3,7 +3,7 @@
 from gi.repository import Gtk, GdkPixbuf
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 liststore = Gtk.ListStore(str, GdkPixbuf.Pixbuf)
 

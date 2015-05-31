@@ -14,6 +14,7 @@ def color_activated():
 colorchooserdialog = Gtk.ColorChooserDialog()
 
 response = colorchooserdialog.run()
+
 if response == Gtk.ResponseType.OK:
     color_activated()
 

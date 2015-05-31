@@ -2,20 +2,20 @@
 
 from gi.repository import Gtk, GObject
 
-def pulse_spinner():    
+def pulse_spinner():
     for item in liststore:
         if item[1] == True:
             if item[2] == 12:
                 item[2] = 0
             else:
                 item[2] += 1
-    
+
     cellrendererspinner.set_property("pulse", item[2])
-    
+
     return True
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 liststore = Gtk.ListStore(str, bool, int)
 liststore.append(["Copying files", True,  0])

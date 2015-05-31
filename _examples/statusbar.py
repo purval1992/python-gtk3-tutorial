@@ -7,7 +7,7 @@ count = 0
 def push_message(widget):
     global count
     count += 1
-    
+
     message = "Message number %i" % count
     statusbar.push(context, message)
 
@@ -18,7 +18,7 @@ def remove_messages(widget):
     statusbar.remove_all(context)
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 grid = Gtk.Grid()
 grid.set_column_spacing(5)

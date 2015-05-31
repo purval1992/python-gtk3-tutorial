@@ -8,8 +8,7 @@ def file_selected(button):
 
 window = Gtk.Window()
 window.set_default_size(600, 400)
-window.set_border_width(2)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
 window.add(box)

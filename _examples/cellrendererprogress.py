@@ -7,19 +7,19 @@ def pulse_progressbar():
     for item in liststore:
         if item[1] < 100:
             value = random.randint(0, 5)
-            
+
             if value + item[1] > 100:
                 item[1] = 100
             else:
                 item[1] += value
         else:
             item[1] = 0
-    
+
     return True
 
 window = Gtk.Window()
 window.set_default_size(200, 200)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 liststore = Gtk.ListStore(str, int)
 liststore.append(["Downloading files", 0])

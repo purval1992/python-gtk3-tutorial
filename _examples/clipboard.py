@@ -4,10 +4,10 @@ from gi.repository import Gtk, Gdk
 
 def copy_text(button, action):
     content = entry.get_text()
-    
+
     if action == "cut":
         entry.set_text("")
-    
+
     clipboard.set_text(content, -1)
 
 def paste_text(button):
@@ -17,7 +17,7 @@ def paste_text(button):
 clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 grid = Gtk.Grid()
 window.add(grid)

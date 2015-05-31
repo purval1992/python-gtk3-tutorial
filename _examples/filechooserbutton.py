@@ -7,7 +7,7 @@ def file_changed(filechooserbutton):
 
 window = Gtk.Window()
 window.set_default_size(150, -1)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 filechooserbutton = Gtk.FileChooserButton(title="FileChooserButton")
 filechooserbutton.connect("file-set", file_changed)

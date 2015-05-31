@@ -9,7 +9,7 @@ def reveal_child(button):
         revealer.set_reveal_child(True)
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 grid = Gtk.Grid()
 window.add(grid)

@@ -8,7 +8,7 @@ def plug_event(widget):
 
 window = Gtk.Window()
 window.set_default_size(200, 200)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 socket = Gtk.Socket()
 socket.connect("plug-added", plug_event)

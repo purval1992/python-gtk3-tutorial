@@ -25,7 +25,7 @@ def filter_visible(model, treeiter, data):
     return show
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 grid = Gtk.Grid()
 grid.set_row_spacing(5)

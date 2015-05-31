@@ -3,7 +3,7 @@
 from gi.repository import Gtk
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=2)
 window.add(box)

@@ -7,7 +7,7 @@ def radiobutton_toggled(radiobutton):
         print("%s is active" % radiobutton.get_label())
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 window.add(box)

@@ -7,12 +7,12 @@ def set_wrap_mode(radiobutton, wrap_mode):
 
 def set_style_text(checkbutton):
     start, end = textbuffer.get_bounds()
-        
+
     if checkbuttonBold.get_active():
         textbuffer.apply_tag(texttagBold, start, end)
     else:
         textbuffer.remove_tag(texttagBold, start, end)
-        
+
     if checkbuttonItalic.get_active():
         textbuffer.apply_tag(texttagItalic, start, end)
     else:
@@ -25,7 +25,7 @@ def set_style_text(checkbutton):
 
 window = Gtk.Window()
 window.set_default_size(250, 300)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 grid = Gtk.Grid()
 window.add(grid)

@@ -12,7 +12,7 @@ def color_set(colorbutton):
     print("Hex: #%02x%02x%02x" % (red, green, blue))
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 colorbutton = Gtk.ColorButton()
 colorbutton.connect("color-set", color_set)

@@ -5,7 +5,8 @@ from gi.repository import Gtk
 class GettingStarted:
     def __init__(self):
         window = Gtk.Window()
+        window.connect("destroy", Gtk.main_quit)
         window.show()
-  
+
 GettingStarted()
 Gtk.main()

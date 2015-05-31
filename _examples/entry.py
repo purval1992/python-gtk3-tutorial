@@ -6,7 +6,7 @@ def entry_activated(entry):
     print(entry.get_text())
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 entry = Gtk.Entry()
 entry.connect("activate", entry_activated)

@@ -6,7 +6,7 @@ def togglebutton_toggled(togglebutton):
     print("ToggleButton has been toggled!")
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 togglebutton = Gtk.ToggleButton(label="ToggleButton")
 togglebutton.connect("toggled", togglebutton_toggled)

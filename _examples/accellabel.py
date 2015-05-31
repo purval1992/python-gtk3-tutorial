@@ -7,7 +7,7 @@ def button_clicked(widget):
 
 window = Gtk.Window()
 window.set_default_size(200, -1)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 grid = Gtk.Grid()
 window.add(grid)

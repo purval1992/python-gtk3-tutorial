@@ -6,7 +6,7 @@ def display_value(scalebutton, value):
     print("ScaleButton value: %0.2f" % value)
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 scalebutton = Gtk.ScaleButton()
 scalebutton.connect("value-changed", display_value)

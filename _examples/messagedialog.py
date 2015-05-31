@@ -5,12 +5,12 @@ from gi.repository import Gtk
 def display_message_dialog(button, message_type):
     messagedialog = Gtk.MessageDialog(message_format="MessageDialog")
     messagedialog.set_property("message-type", message_type)
-    
+
     messagedialog.run()
     messagedialog.destroy()
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 grid = Gtk.Grid()
 grid.set_column_spacing(5)

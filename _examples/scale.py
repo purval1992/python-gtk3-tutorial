@@ -11,14 +11,14 @@ def clear_marks(button):
     scale.clear_marks()
 
 def scale_orientation(radiobutton):
-	if radiobutton.get_label() == "Horizontal Scale":
-		scale.set_orientation(Gtk.Orientation.HORIZONTAL)
-	else:
-		scale.set_orientation(Gtk.Orientation.VERTICAL)
+    if radiobutton.get_label() == "Horizontal Scale":
+        scale.set_orientation(Gtk.Orientation.HORIZONTAL)
+    else:
+        scale.set_orientation(Gtk.Orientation.VERTICAL)
 
 window = Gtk.Window()
 window.set_default_size(200, 200)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 grid = Gtk.Grid()
 window.add(grid)

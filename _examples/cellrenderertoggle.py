@@ -6,7 +6,7 @@ def cell_toggled(cellrenderertoggle, path):
     liststore[path][1] = not liststore[path][1]
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 liststore = Gtk.ListStore(str, bool)
 liststore.append(["Ethernet", True])

@@ -8,9 +8,10 @@ def combobox_changed(combobox):
 
 window = Gtk.Window()
 window.set_default_size(150, -1)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 liststore = Gtk.ListStore(str)
+
 for item in ["Debian", "Sabayon", "Fedora", "Gentoo", "Tiny Core"]:
     liststore.append([item])
 

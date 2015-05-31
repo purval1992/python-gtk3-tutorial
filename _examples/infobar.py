@@ -10,7 +10,7 @@ def infobar_response(infobar, respose_id):
     infobar.hide()
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2, homogeneous=False)
 window.add(vbox)

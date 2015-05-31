@@ -25,13 +25,14 @@ if __name__ == "__main__":
     authority = Polkit.Authority.get()
     cancellable = Gio.Cancellable()
     subject = Polkit.UnixProcess.new(os.getppid())
-    
+
     window = Gtk.Window()
-    
+    window.connect("destroy", Gtk.main_quit)
+
     lockbutton = Gtk.LockButton()
     lockbutton.connect("clicked", check_authorization)
     window.add(lockbutton)
-    
+
     window.show_all()
 
     mainloop.run()

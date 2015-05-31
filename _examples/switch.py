@@ -9,7 +9,7 @@ def switch_toggled(switch, state):
         print("Switch toggled to off")
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 switch = Gtk.Switch()
 switch.connect("notify::active", switch_toggled)

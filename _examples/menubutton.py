@@ -4,7 +4,7 @@ from gi.repository import Gtk
 
 window = Gtk.Window()
 window.set_default_size(50, 50)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 menubutton = Gtk.MenuButton()
 window.add(menubutton)

@@ -27,7 +27,7 @@ def close_tab(widget, event, child):
 
 window = Gtk.Window()
 window.set_default_size(200, 200)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 notebook = Gtk.Notebook()
 window.add(notebook)

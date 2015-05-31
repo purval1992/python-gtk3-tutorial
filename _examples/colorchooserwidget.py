@@ -10,7 +10,7 @@ def color_activated(colorchooserwidget, color):
     print("Hex: #%02x%02x%02x" % (red, green, blue))
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 colorchooserwidget = Gtk.ColorChooserWidget()
 colorchooserwidget.connect("color-activated", color_activated)

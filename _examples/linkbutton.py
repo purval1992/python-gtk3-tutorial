@@ -3,7 +3,7 @@
 from gi.repository import Gtk
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 linkbutton = Gtk.LinkButton(uri="http://learngtk.org", label="LearnGTK")
 window.add(linkbutton)

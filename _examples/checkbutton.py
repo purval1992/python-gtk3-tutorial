@@ -9,7 +9,7 @@ def checkbutton_toggled(checkbutton):
         print("CheckButton has been toggled off!")
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 checkbutton = Gtk.CheckButton(label="CheckButton")
 checkbutton.connect("toggled", checkbutton_toggled)

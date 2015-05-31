@@ -3,7 +3,7 @@
 from gi.repository import Gtk
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 expander = Gtk.Expander(label="Expander")
 expander.set_resize_toplevel(True)

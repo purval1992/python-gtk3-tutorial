@@ -6,7 +6,7 @@ def cell_edited(cellrendererspin, path, value):
     liststore[path][1] = int(value)
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 liststore = Gtk.ListStore(str, int)
 liststore.append(["Oranges", 5])

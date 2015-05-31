@@ -3,7 +3,7 @@
 from gi.repository import Gtk
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 buttonbox = Gtk.ButtonBox(orientation=Gtk.Orientation.HORIZONTAL)
 buttonbox.set_spacing(2)

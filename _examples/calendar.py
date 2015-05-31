@@ -4,14 +4,14 @@ from gi.repository import Gtk
 
 def calendar_change(checkbutton, option):
     display_options = []
-    
+
     if checkbutton.get_active():
         display_options.append(option)
-    
+
     calendar.set_display_options(Gtk.CalendarDisplayOptions.SHOW_HEADING)
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=2)
 window.add(hbox)

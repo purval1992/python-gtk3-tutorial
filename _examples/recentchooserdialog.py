@@ -12,14 +12,13 @@ response = recentchooserdialog.run()
 
 if response == Gtk.ResponseType.OK:
     item = recentchooserdialog.get_current_item()
-    
+
     if item:
-		name = item.get_display_name()
-		uri = item.get_uri()
-		
-		print("Item selected:")
-		print("Name:\t %s" % name)
-		print("URI:\t %s" % uri)
-		
+        name = item.get_display_name()
+        uri = item.get_uri()
+
+        print("Item selected:")
+        print("Name:\t %s" % name)
+        print("URI:\t %s" % uri)
 
 recentchooserdialog.destroy()

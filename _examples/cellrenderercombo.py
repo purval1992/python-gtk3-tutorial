@@ -2,16 +2,16 @@
 
 from gi.repository import Gtk
 
-def combo_changed(cellrenderercombo, path, treeiter):    
+def combo_changed(cellrenderercombo, path, treeiter):
     liststoreAppliance[path][1] = liststoreManufacturers[treeiter][0]
-    
+
 window = Gtk.Window()
 window.set_default_size(200, 200)
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 liststoreAppliance = Gtk.ListStore(str, str)
 liststoreAppliance.append(["Dishwasher", "Bosch"])
-liststoreAppliance.append(["Refrigerator", "Samsung])
+liststoreAppliance.append(["Refrigerator", "Samsung"])
 liststoreAppliance.append(["Cooker", "Hotpoint"])
 
 liststoreManufacturers = Gtk.ListStore(str)

@@ -6,7 +6,7 @@ def search_changed(searchentry):
     print(searchentry.get_text())
 
 window = Gtk.Window()
-window.connect("destroy", lambda q: Gtk.main_quit())
+window.connect("destroy", Gtk.main_quit)
 
 searchentry = Gtk.SearchEntry()
 searchentry.connect("search-changed", search_changed)
