@@ -144,5 +144,10 @@ Contents:
    application
    clipboard
    printoperation
+   printer
+   printunixdialog
+   papersize
+   pagesetup
+   pagesetupunixdialog
    commonmethods
    glossary
