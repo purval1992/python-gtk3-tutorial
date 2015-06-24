@@ -30,6 +30,12 @@ An option to configure whether the Connect to Server option is shown can be made
 
 If *show_server* is set to ``False``, the option is hidden. This is useful if the application implements a way to connect to servers itself in a different way.
 
+The desktop environment is able to determine whether recent items are displayed. This can be overridden via::
+
+  placessiderbar.set_show_recent(show_recent)
+
+When *show_recent* is set to ``False, the recent items are not displayed.
+
 =======
 Signals
 =======
