@@ -149,5 +149,6 @@ Contents:
    papersize
    pagesetup
    pagesetupunixdialog
+   builder
    commonmethods
    glossary
