@@ -73,6 +73,12 @@ Pages can be switched programmatically using the methods::
   assistant.next_page()
   assistant.previous_page()
 
+Padding can be applied to the Assistant page via the method::
+
+  assistant.set_page_has_padding(page, padding)
+
+The *page* parameter should be set to the widget being displayed on the page. The *padding* value when set to ``True`` inserts a space around the edge to clean up the display.
+
 =======
 Signals
 =======
