@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 
-from gi.repository import Gtk, Gio
+from gi.repository import Gtk
+from gi.repository import Gio
 import sys
 
-class MyWindow(Gtk.ApplicationWindow):
+class ApplicationWindow(Gtk.ApplicationWindow):
     def __init__(self, app):
-        Gtk.Window.__init__(self, title="Menubutton Example", application=app)
-        self.set_default_size(600, 400)
+        Gtk.Window.__init__(self, title="Application Example", application=app)
+        self.set_default_size(200, 200)
 
         grid = Gtk.Grid()
+        self.add(grid)
 
         menubutton = Gtk.MenuButton()
         menubutton.set_size_request(80, 35)
@@ -19,15 +21,13 @@ class MyWindow(Gtk.ApplicationWindow):
         menumodel.append("New", "app.new")
         menumodel.append("Quit", "app.quit")
 
-        self.add(grid)
-
-class MyApplication(Gtk.Application):
+class Application(Gtk.Application):
     def __init__(self):
         Gtk.Application.__init__(self)
 
     def do_activate(self):
-        win = MyWindow(self)
-        win.show_all()
+        window = ApplicationWindow(self)
+        window.show_all()
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
@@ -41,12 +41,12 @@ class MyApplication(Gtk.Application):
         self.add_action(quit_action)
 
     def new_callback(self, action, parameter):
-        print("You clicked \"New\"")
+        print("You clicked New")
 
     def quit_callback(self, action, parameter):
-        print("You clicked \"Quit\"")
+        print("You clicked Quit")
         self.quit()
 
-app = MyApplication()
-exit_status = app.run(sys.argv)
+application = Application()
+exit_status = application.run(sys.argv)
 sys.exit(exit_status)
