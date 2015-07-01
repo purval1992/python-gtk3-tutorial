@@ -27,6 +27,10 @@ Submenus can be attached to a MenuItem via::
 
 The *menu* value should be a named :doc:`menu` widget. This should be used for both menus attached to items on a Menubar, and when constructing a tree of menus.
 
+A MenuItem can be programatically activated with the method::
+
+  menuitem.activate()
+
 =======
 Signals
 =======
@@ -35,7 +39,7 @@ The common signals of a MenuItem are::
   "activate" (menuitem)
   "activate-item" (menuitem)
 
-The "activate" signal emits when the user clicks on the MenuItem. The "activate-item" is emitted when the user clicks a MenuItem as with "activate", however it also emits when a submenu appears. This would be useful for dynamic loading of items in a submenu. In most cases, "activate" is the correct signal to use.
+The ``"activate"`` signal emits when the user clicks on the MenuItem. The ``"activate-item"`` is emitted when the user clicks a MenuItem as with ``"activate"``, however it also emits when a submenu appears. This would be useful for dynamic loading of items in a submenu. In most cases, ``"activate"`` is the correct signal to use.
 
 =======
 Example

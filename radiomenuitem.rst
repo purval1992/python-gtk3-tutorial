@@ -20,20 +20,21 @@ The label text of the RadioMenuItem can be specified after creation with::
 
 A group can also be defined after construction of the widget::
 
-  radiomenuitem.set_group(group)
+  radiomenuitem.join_group(group)
 
 To retrieve the group which the RadioMenuItem is attached::
 
-  group = radiomenuitem.get_group()
+  radiomenuitem.get_group()
 
 =======
 Signals
 =======
 The commonly used signals of the RadioMenuItem are::
 
+  "toggled" (radiomenuitem)
   "group-changed" (radiomenuitem)
 
-The ``"group-changed"`` signal is emitted when the RadioMenuItem group is changed, or it is removed from the group entirely.
+A ``"toggled"`` signal is emitted by the RadioMenuItem whenever the widget is made active or inactive. The ``"group-changed"`` signal is emitted when the RadioMenuItem group is changed, or it is removed from the group entirely.
 
 =======
 Example

@@ -18,7 +18,7 @@ The label can be applied to the CheckMenuItem after constructing it with::
 
 To retrieve the state of the CheckMenuItem use::
 
-  active = checkmenuitem.get_active()
+  checkmenuitem.get_active()
 
 The state can also be set with::
 
@@ -32,7 +32,7 @@ When using multiple CheckMenuItem widgets, it may be necessary to indicate an in
 
 To retrieve whether a CheckMenuItem is in an inconsitent state use::
 
-  inconsistent = checkmenuitem.get_inconsistent()
+  checkmenuitem.get_inconsistent()
 
 =======
 Signals
