@@ -49,6 +49,10 @@ In some cases, it may be required to ensure that when the Popover is displayed, 
 
 When *modal* is set to ``True``, the Popover will have the keyboard focus.
 
+The default widget within the Popover can be set using the method::
+
+  popover.set_default_widget(widget)
+
 =======
 Example
 =======

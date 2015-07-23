@@ -148,6 +148,7 @@ Contents:
    printunixdialog
    papersize
    pagesetup
+   draganddrop
    pagesetupunixdialog
    builder
    commonmethods
