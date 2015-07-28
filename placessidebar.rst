@@ -36,6 +36,10 @@ The desktop environment is able to determine whether recent items are displayed.
 
 When *show_recent* is set to ``False, the recent items are not displayed.
 
+To configure whether the trash location is visible, call::
+
+  placessidebar.set_show_trash(show_trash)
+
 =======
 Signals
 =======

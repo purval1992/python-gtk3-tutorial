@@ -22,6 +22,17 @@ Alternatively, to set a state on the Switch programmatically::
 
 If *active* is set to True, the Switch will be in the On position.
 
+==========
+Properties
+==========
+The height of the slider can be configured with the ``"slider-height"`` property. The default value is 22, with allowed values greater than 22::
+
+  switch.set_property("slider-height", height)
+
+The width can also be defined via ``"slider-width"`` with allowed values greater than the default of 36::
+
+  switch.set_property("slider-width", width)
+
 =======
 Signals
 =======
