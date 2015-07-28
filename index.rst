@@ -141,6 +141,7 @@ Contents:
    drawingarea
    plug
    socket
+   windowgroup
    application
    clipboard
    printoperation
