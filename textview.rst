@@ -56,6 +56,8 @@ Margins can be set within the TextView with::
 
   textview.set_left_margin(margin)
   textview.set_right_margin(margin)
+  textview.set_top_margin(margin)
+  textview.set_bottom_margin(margin)
 
 The *margin* value must be set to an integer value which determines the number of pixels of space within the margin.
 

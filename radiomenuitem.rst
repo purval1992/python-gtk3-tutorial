@@ -22,6 +22,8 @@ A group can also be defined after construction of the widget::
 
   radiomenuitem.join_group(group)
 
+The *group* parameter should be set to the first RadioMenuItem which is to be a part of the group. The first item however does not need to have the ``.join_group()`` method called.
+
 To retrieve the group which the RadioMenuItem is attached::
 
   radiomenuitem.get_group()
