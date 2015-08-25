@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+from gi.repository import Gtk
+
+class Example(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.set_title("ActionBar Example")
+        self.set_default_size(200, 200)
+        self.connect("destroy", Gtk.main_quit)
+
+        grid = Gtk.Grid()
+        self.add(grid)
+
+        label = Gtk.Label()
+        label.set_vexpand(True)
+        grid.attach(label, 0, 0, 1, 1)
+
+        actionbar = Gtk.ActionBar()
+        actionbar.set_hexpand(True)
+        grid.attach(actionbar, 0, 1, 1, 1)
+
+        button = Gtk.Button("Cut")
+        actionbar.pack_start(button)
+        button = Gtk.Button("Copy")
+        actionbar.pack_start(button)
+        button = Gtk.Button("Paste")
+        actionbar.pack_end(button)
+
+    def run(self):
+        self.show_all()
+
+example = Example()
+example.run()
+
+Gtk.main()
