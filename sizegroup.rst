@@ -1,13 +1,20 @@
 SizeGroup
 =========
-The SizeGroup object providess a mechanism for grouping widgets, and that all widgets within the group equal the same size regardless of content.
+The SizeGroup object providess a mechanism for grouping widgets, and that all widgets within the group equal the same size regardless of content. It is similar in some ways to the :doc:`buttonbox` widget.
 
 ===========
 Constructor
 ===========
 The SizeGroup can be constructed using the following::
 
-  sizegroup = Gtk.SizeGroup()
+  sizegroup = Gtk.SizeGroup(mode)
+
+The *mode* constant determines how the SizeGroup displays the widgets and should be set to:
+
+* ``Gtk.SizeGroup.NONE`` - do not size equally.
+* ``Gtk.SizeGroup.HORIZONTAL`` - size equally horizontally.
+* ``Gtk.SizeGroup.VERTICAL`` - size equally vertically.
+* ``Gtk.SizeGroup.BOTH`` - size equally both horizontally and vertically.
 
 =======
 Methods
@@ -19,13 +26,13 @@ Widgets are added to and removed from the SizeGroup using::
 
 To retrieve a list of widgets which are currently within the SizeGroup use::
 
-  widgets = sizegroup.get_widgets()
+  sizegroup.get_widgets()
 
-A SizeGroup can take the size required and apply it in a variety of directions by calling::
+The SizeGroup mode can also be set after construction with::
 
   sizegroup.set_mode(mode)
 
-The *mode* parameter can be set to any of the four following constants; ``Gtk.SizeGroupMode.NONE``, ``Gtk.SizeGroupMode.HORIZONTAL`` which affects the horizontal size, ``Gtk.SizeGroupMode.VERTICAL`` which affects vertical sizing and ``Gtk.SizeGroupMode.BOTH`` which applies the sizing to both horizontal and vertical directions.
+The *mode* parameter should be set with one of the constants defined in the construction section.
 
 To configure whether hidden widgets which are a member of the SizeGroup are taken into account call::
 
