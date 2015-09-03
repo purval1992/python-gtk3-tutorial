@@ -9,27 +9,32 @@ window.connect("destroy", Gtk.main_quit)
 toolbar = Gtk.Toolbar()
 window.add(toolbar)
 
-toolbutton = Gtk.ToolButton(stock_id=Gtk.STOCK_NEW)
+toolbutton = Gtk.ToolButton()
 toolbutton.set_is_important(True)
+toolbutton.set_icon_name("gtk-new")
 toolbar.add(toolbutton)
 
-toggletoolbutton = Gtk.ToggleToolButton(stock_id=Gtk.STOCK_MEDIA_PLAY)
+toggletoolbutton = Gtk.ToggleToolButton()
+toggletoolbutton.set_icon_name("gtk-media-play")
 toolbar.add(toggletoolbutton)
 
 menu = Gtk.Menu()
 menuitem = Gtk.MenuItem(label="MenuItem")
 menu.append(menuitem)
 
-menutoolbutton = Gtk.MenuToolButton(stock_id=Gtk.STOCK_OPEN)
+menutoolbutton = Gtk.MenuToolButton()
 menutoolbutton.set_menu(menu)
+menutoolbutton.set_icon_name("gtk-open")
 toolbar.add(menutoolbutton)
 
 separatortoolitem = Gtk.SeparatorToolItem()
 toolbar.add(separatortoolitem)
 
-radiotoolbutton1 = Gtk.RadioToolButton(group=None, stock_id=Gtk.STOCK_MEDIA_REWIND)
+radiotoolbutton1 = Gtk.RadioToolButton()
+radiotoolbutton1.set_icon_name("gtk-media-rewind")
 toolbar.add(radiotoolbutton1)
-radiotoolbutton2 = Gtk.RadioToolButton(group=radiotoolbutton1, stock_id=Gtk.STOCK_MEDIA_FORWARD)
+radiotoolbutton2 = Gtk.RadioToolButton(group=radiotoolbutton1)
+radiotoolbutton2.set_icon_name("gtk-media-forward")
 toolbar.add(radiotoolbutton2)
 
 separatortoolitem = Gtk.SeparatorToolItem()

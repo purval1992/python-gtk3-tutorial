@@ -12,12 +12,14 @@ def infobar_response(infobar, respose_id):
 window = Gtk.Window()
 window.connect("destroy", Gtk.main_quit)
 
-vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2, homogeneous=False)
+vbox = Gtk.Box()
+vbox.set_orientation(Gtk.Orientation.VERTICAL)
+vbox.set_spacing(2)
 window.add(vbox)
 
 infobar = Gtk.InfoBar()
 vbox.pack_start(infobar, True, True, 0)
-infobar.add_button(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)
+infobar.add_button("Close", Gtk.ResponseType.CLOSE)
 infobar.set_default_response(Gtk.ResponseType.CLOSE)
 infobar.connect("response", infobar_response)
 
@@ -25,7 +27,10 @@ label = Gtk.Label("InfoBar example")
 content = infobar.get_content_area()
 content.add(label)
 
-hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=2, homogeneous=True)
+hbox = Gtk.Box()
+hbox.set_orientation(Gtk.Orientation.HORIZONTAL)
+hbox.set_spacing(2)
+hbox.set_homogeneous(True)
 vbox.pack_start(hbox, False, False, 0)
 
 buttonInfo = Gtk.Button(label="_Info", use_underline=True)
