@@ -2,8 +2,8 @@
 
 from gi.repository import Gtk
 
-def cell_toggled(cellrenderertoggle, path):
-    liststore[path][1] = not liststore[path][1]
+def cell_toggled(cellrenderertoggle, treepath):
+    liststore[treepath][1] = not liststore[treepath][1]
 
 window = Gtk.Window()
 window.connect("destroy", Gtk.main_quit)

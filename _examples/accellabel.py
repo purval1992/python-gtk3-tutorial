@@ -20,7 +20,11 @@ accellabel.set_hexpand(True)
 grid.attach(accellabel, 0, 0, 2, 1)
 
 button = Gtk.Button("Save")
-button.add_accelerator("clicked", accelgroup, Gdk.keyval_from_name("s"), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE)
+button.add_accelerator("clicked",
+                       accelgroup,
+                       Gdk.keyval_from_name("s"),
+                       Gdk.ModifierType.CONTROL_MASK,
+                       Gtk.AccelFlags.VISIBLE)
 button.connect("clicked", button_clicked)
 accellabel.set_accel_widget(button)
 grid.attach(button, 0, 1, 2, 1)

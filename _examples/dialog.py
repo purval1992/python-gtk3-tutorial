@@ -2,8 +2,11 @@
 
 from gi.repository import Gtk
 
-dialog = Gtk.Dialog(title="Dialog", buttons=(Gtk.STOCK_OK, Gtk.ResponseType.OK, Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL))
+dialog = Gtk.Dialog()
+dialog.set_title("Dialog Example")
 dialog.set_default_size(400, 300)
+dialog.add_button("OK", Gtk.ResponseType.OK)
+dialog.add_button("Cancel", Gtk.ResponseType.CANCEL)
 
 response = dialog.run()
 

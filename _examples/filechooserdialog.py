@@ -2,10 +2,10 @@
 
 from gi.repository import Gtk
 
-filechooserdialog = Gtk.FileChooserDialog(
+filechooserdialog = Gtk.FileChooserDialog()
 filechooserdialog.set_title("FileChooserDialog")
-filechooserdialog.add_button("_Cancel", Gtk.ResponseType.CANCEL)
 filechooserdialog.add_button("_Open", Gtk.ResponseType.OK)
+filechooserdialog.add_button("_Cancel", Gtk.ResponseType.CANCEL)
 filechooserdialog.set_default_response(Gtk.ResponseType.OK)
 
 response = filechooserdialog.run()

@@ -2,7 +2,8 @@
 
 from gi.repository import Gtk
 
-fontchooserdialog = Gtk.FontChooserDialog(title="FontChooserDialog")
+fontchooserdialog = Gtk.FontChooserDialog()
+fontchooserdialog.set_title("FontChooserDialog")
 
 response = fontchooserdialog.run()
 

@@ -2,8 +2,8 @@
 
 from gi.repository import Gtk
 
-def cell_edited(cellrenderertext, path, text):
-    liststore[path][1] = text
+def cell_edited(cellrenderertext, treepath, text):
+    liststore[treepath][1] = text
 
 window = Gtk.Window()
 window.connect("destroy", Gtk.main_quit)

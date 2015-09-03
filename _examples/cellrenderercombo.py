@@ -2,8 +2,8 @@
 
 from gi.repository import Gtk
 
-def combo_changed(cellrenderercombo, path, treeiter):
-    liststoreAppliance[path][1] = liststoreManufacturers[treeiter][0]
+def combo_changed(cellrenderercombo, treepath, treeiter):
+    liststoreAppliance[treepath][1] = liststoreManufacturers[treeiter][0]
 
 window = Gtk.Window()
 window.set_default_size(200, 200)
