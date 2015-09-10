@@ -36,6 +36,7 @@ Contents:
    image
    spinner
    infobar
+   actionbar
    headerbar
    statusbar
    separator
@@ -43,7 +44,6 @@ Contents:
    accelgroup
    calendar
    eventbox
-   arrow
    buttonbox
    adjustment
    progressbar
@@ -60,7 +60,6 @@ Contents:
    aspectframe
    expander
    revealer
-   alignment
    sizegroup
    paned
    fixed
@@ -115,6 +114,7 @@ Contents:
    texttagtable
    liststore
    treestore
+   menumodel
    combobox
    comboboxtext
    treeview
@@ -137,7 +137,6 @@ Contents:
    messagedialog
    aboutdialog
    assistant
-   statusicon
    drawingarea
    plug
    socket
@@ -147,6 +146,8 @@ Contents:
    printoperation
    printer
    printunixdialog
+   printsettings
+   printjob
    papersize
    pagesetup
    draganddrop
