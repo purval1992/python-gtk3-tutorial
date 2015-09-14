@@ -114,7 +114,6 @@ Contents:
    texttagtable
    liststore
    treestore
-   menumodel
    combobox
    comboboxtext
    treeview
