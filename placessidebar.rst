@@ -43,7 +43,7 @@ To configure whether the trash location is visible, call::
 =======
 Signals
 =======
-The common signals of the PlaceSider are::
+The common signals of the PlacesSidebar are::
 
   "populate-popup" (placessidebar, menu, selected_item, selected_volume)
 
