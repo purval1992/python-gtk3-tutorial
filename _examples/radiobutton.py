@@ -9,7 +9,9 @@ def radiobutton_toggled(radiobutton):
 window = Gtk.Window()
 window.connect("destroy", Gtk.main_quit)
 
-box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+box = Gtk.Box()
+box.set_orientation(Gtk.Orientation.VERTICAL)
+box.set_spacing(5)
 window.add(box)
 
 radiobutton1 = Gtk.RadioButton(label="RadioButton 1")

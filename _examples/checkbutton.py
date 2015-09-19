@@ -4,9 +4,9 @@ from gi.repository import Gtk
 
 def checkbutton_toggled(checkbutton):
     if checkbutton.get_active():
-        print("CheckButton has been toggled on!")
+        print("CheckButton toggled on!")
     else:
-        print("CheckButton has been toggled off!")
+        print("CheckButton toggled off!")
 
 window = Gtk.Window()
 window.connect("destroy", Gtk.main_quit)
