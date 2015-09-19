@@ -12,11 +12,11 @@ window.add(grid)
 stack = Gtk.Stack()
 stack.set_hexpand(True)
 stack.set_vexpand(True)
-grid.attach(stack, 0, 1, 1, 1)
+grid.attach(stack, 1, 0, 1, 1)
 
-stackswitcher = Gtk.StackSwitcher()
-stackswitcher.set_stack(stack)
-grid.attach(stackswitcher, 0, 0, 1, 1)
+stacksidebar = Gtk.StackSidebar()
+stacksidebar.set_stack(stack)
+grid.attach(stacksidebar, 0, 0, 1, 1)
 
 for page in range(1, 4):
     label = Gtk.Label("Stack Content on Page %i" % (page))
