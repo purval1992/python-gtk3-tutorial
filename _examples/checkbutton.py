@@ -2,19 +2,22 @@
 
 from gi.repository import Gtk
 
-def checkbutton_toggled(checkbutton):
-    if checkbutton.get_active():
-        print("CheckButton toggled on!")
-    else:
-        print("CheckButton toggled off!")
+class CheckButton(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+        checkbutton = Gtk.CheckButton(label="CheckButton")
+        checkbutton.connect("toggled", self.on_check_button_toggled)
+        self.add(checkbutton)
 
-checkbutton = Gtk.CheckButton(label="CheckButton")
-checkbutton.connect("toggled", checkbutton_toggled)
-window.add(checkbutton)
+    def on_check_button_toggled(self, checkbutton):
+        if checkbutton.get_active():
+            print("CheckButton toggled on!")
+        else:
+            print("CheckButton toggled off!")
 
+window = CheckButton()
 window.show_all()
 
 Gtk.main()
