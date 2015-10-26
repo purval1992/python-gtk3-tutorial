@@ -5,15 +5,15 @@ from gi.repository import Gio
 import sys
 
 class ApplicationWindow(Gtk.ApplicationWindow):
-    def __init__(self, app):
-        Gtk.Window.__init__(self, title="Application Example", application=app)
+    def __init__(self, application):
+        Gtk.Window.__init__(self, application=application)
+        self.set_title("Application")
         self.set_default_size(200, 200)
 
         grid = Gtk.Grid()
         self.add(grid)
 
         menubutton = Gtk.MenuButton()
-        menubutton.set_size_request(80, 35)
         grid.attach(menubutton, 0, 0, 1, 1)
 
         menumodel = Gio.Menu()

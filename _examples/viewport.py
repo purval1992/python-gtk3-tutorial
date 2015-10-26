@@ -2,31 +2,29 @@
 
 from gi.repository import Gtk
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+class Viewport(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.set_default_size(-1, 200)
+        self.connect("destroy", Gtk.main_quit)
 
-grid = Gtk.Grid()
-window.add(grid)
+        scrolledwindow = Gtk.ScrolledWindow()
+        self.add(scrolledwindow)
 
-viewport = Gtk.Viewport()
-viewport.set_size_request(200, 200)
-grid.attach(viewport, 0, 0, 1, 1)
+        hadjustment = Gtk.Adjustment()
+        vadjustment = Gtk.Adjustment()
 
-vadjustment = viewport.get_vadjustment()
-hadjustment = viewport.get_hadjustment()
+        viewport = Gtk.Viewport(hadjustment, vadjustment)
+        scrolledwindow.add(viewport)
 
-vscrollbar = Gtk.VScrollbar()
-grid.attach(vscrollbar, 1, 0, 1, 1)
-hscrollbar = Gtk.HScrollbar()
-grid.attach(hscrollbar, 0, 1, 1, 1)
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        viewport.add(box)
 
-box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-viewport.add(box)
+        for i in range(1, 16):
+            button = Gtk.Button(label="Button %s" % i)
+            box.pack_start(button, True, True, 0)
 
-for i in range(0, 15):
-    button = Gtk.Button(label="Button %s" % i)
-    box.pack_start(button, True, True, 0)
-
+window = Viewport()
 window.show_all()
 
 Gtk.main()
