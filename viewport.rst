@@ -24,7 +24,23 @@ If you do use manually created Adjustment objects, these can be attached after c
   viewport.set_hadjustment(hadjustment)
   viewport.set_vadjustment(vadjustment)
 
+The shadow type places a shadow type around the Viewport, and is set via::
+
+  viewport.set_shadow_type(shadow)
+
+The *shadow* should be set to one of the following:
+
+* ``Gtk.ShadowType.NONE`` - no outline.
+* ``Gtk.ShadowType.IN`` - outline bevelled inwards.
+* ``Gtk.ShadowType.OUT`` - outline bevelled outwards.
+* ``Gtk.ShadowType.ETCHED_IN`` - outline sunken.
+* ``Gtk.ShadowType.ERCHED_OUT`` - outline raised.
+
 =======
 Example
 =======
-Viewport example currently unavailable.
+Below is an example of a Viewport:
+
+.. literalinclude:: _examples/viewport.py
+
+Download: :download:`Viewport <_examples/viewport.py>`
