@@ -13,7 +13,7 @@ Alternatively, the Popover can be attached to the widget which will launch it by
 
   popover = Gtk.Popover(relative_to)
 
-When the Popover is to be used as a replacement for a Menu widget, it can be built with a :doc:`menumodel` listing the menu items::
+When the Popover is to be used as a replacement for a Menu widget, it can be built with a MenuModel listing the menu items::
 
   popover = Gtk.Popover.new_from_model(model)
 

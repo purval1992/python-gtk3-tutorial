@@ -29,13 +29,13 @@ A menubar can be defined for the Application after it has been initialised::
 
   application.set_menubar(menubar)
 
-The *menubar* object needs to be a :doc:`menumodel` object.
+The *menubar* object needs to be a MenuModel object.
 
 Another type of menu is the App Menu, which contains some common functions such as Quit or Preferences. This can be added using::
 
   application.set_app_menu(menu)
 
-Again, the *menu* object specified should be a :doc:`menumodel`.
+Again, the *menu* object specified should be a MenuModel.
 
 =======
 Signals
