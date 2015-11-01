@@ -2,19 +2,29 @@
 
 from gi.repository import Gtk
 
-dialog = Gtk.Dialog()
-dialog.set_title("Dialog Example")
-dialog.set_default_size(400, 300)
-dialog.add_button("OK", Gtk.ResponseType.OK)
-dialog.add_button("Cancel", Gtk.ResponseType.CANCEL)
+class Dialog(Gtk.Dialog):
+    def __init__(self):
+        Gtk.Dialog.__init__(self)
+        self.set_title("Dialog")
+        self.set_default_size(400, 300)
+        self.add_button("OK", Gtk.ResponseType.OK)
+        self.add_button("Cancel", Gtk.ResponseType.CANCEL)
+        self.connect("response", self.on_response)
 
-response = dialog.run()
+        label = Gtk.Label("This is a Dialog example.")
+        self.vbox.add(label)
 
-if response == Gtk.ResponseType.OK:
-    print("OK button clicked")
-elif response == Gtk.ResponseType.CANCEL:
-    print("Cancel button clicked")
-else:
-    print("Dialog closed")
+        self.show_all()
 
-dialog.destroy()
+    def on_response(self, dialog, response):
+        if response == Gtk.ResponseType.OK:
+            print("OK button clicked")
+        elif response == Gtk.ResponseType.CANCEL:
+            print("Cancel button clicked")
+        else:
+            print("Dialog closed")
+
+        dialog.destroy()
+
+dialog = Dialog()
+dialog.run()
