@@ -2,21 +2,33 @@
 
 from gi.repository import Gtk
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+class Box(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.set_default_size(200, 200)
+        self.connect("destroy", Gtk.main_quit)
 
-box = Gtk.Box()
-box.set_orientation(Gtk.Orientation.HORIZONTAL)
-box.set_spacing(5)
-window.add(box)
+        hbox = Gtk.Box()
+        hbox.set_orientation(Gtk.Orientation.HORIZONTAL)
+        hbox.set_spacing(5)
+        self.add(hbox)
 
-label = Gtk.Label(label="Label 1")
-box.pack_start(label, True, True, 0)
-label = Gtk.Label(label="Label 2")
-box.pack_start(label, True, True, 0)
-label = Gtk.Label(label="Label 3")
-box.pack_start(label, True, True, 0)
+        label = Gtk.Label(label="Label 1")
+        hbox.pack_start(label, True, True, 0)
+        label = Gtk.Label(label="Label 2")
+        hbox.pack_start(label, True, True, 0)
 
+        vbox = Gtk.Box()
+        vbox.set_orientation(Gtk.Orientation.VERTICAL)
+        vbox.set_spacing(5)
+        hbox.add(vbox)
+
+        label = Gtk.Label(label="Label 3")
+        vbox.pack_start(label, True, True, 0)
+        label = Gtk.Label(label="Label 4")
+        vbox.pack_start(label, True, True, 0)
+
+window = Box()
 window.show_all()
 
 Gtk.main()
