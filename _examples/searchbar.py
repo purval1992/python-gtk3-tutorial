@@ -3,9 +3,7 @@
 from gi.repository import Gtk, Gdk
 
 def find_event(widget, event=None):
-    keyval = event.keyval
-    name = Gdk.keyval_name(keyval)
-    mod = Gtk.accelerator_get_label(keyval, event.state)
+    mod = Gtk.accelerator_get_label(event.keyval, event.state)
 
     if mod == "Ctrl+F" or mod == "Ctrl+Mod2+F":
         if searchbar.get_search_mode():

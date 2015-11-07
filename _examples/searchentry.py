@@ -2,16 +2,19 @@
 
 from gi.repository import Gtk
 
-def search_changed(searchentry):
-    print(searchentry.get_text())
+class SearchEntry(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+        searchentry = Gtk.SearchEntry()
+        searchentry.connect("activate", self.on_search_activated)
+        self.add(searchentry)
 
-searchentry = Gtk.SearchEntry()
-searchentry.connect("search-changed", search_changed)
-window.add(searchentry)
+    def on_search_activated(self, searchentry):
+        print("SearchEntry text: %s" % (searchentry.get_text()))
 
+window = SearchEntry()
 window.show_all()
 
 Gtk.main()
