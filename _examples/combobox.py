@@ -2,28 +2,34 @@
 
 from gi.repository import Gtk
 
-def combobox_changed(combobox):
-    treeiter = combobox.get_active_iter()
-    print("ComboBox selected item: %s" % liststore[treeiter][0])
+class ComboBox(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.set_default_size(150, -1)
+        self.connect("destroy", Gtk.main_quit)
 
-window = Gtk.Window()
-window.set_default_size(150, -1)
-window.connect("destroy", Gtk.main_quit)
+        liststore = Gtk.ListStore(str)
 
-liststore = Gtk.ListStore(str)
+        for item in ["Debian", "Fedora", "Tiny Core", "Linux Mint", "Mageia"]:
+            liststore.append([item])
 
-for item in ["Debian", "Sabayon", "Fedora", "Gentoo", "Tiny Core"]:
-    liststore.append([item])
+        combobox = Gtk.ComboBox()
+        combobox.set_model(liststore)
+        combobox.set_active(0)
+        combobox.connect("changed", self.on_combobox_changed)
+        self.add(combobox)
 
-combobox = Gtk.ComboBox(model=liststore)
-combobox.set_active(0)
-combobox.connect("changed", combobox_changed)
-window.add(combobox)
+        cellrenderertext = Gtk.CellRendererText()
+        combobox.pack_start(cellrenderertext, True)
+        combobox.add_attribute(cellrenderertext, "text", 0)
 
-cellrenderertext = Gtk.CellRendererText()
-combobox.pack_start(cellrenderertext, True)
-combobox.add_attribute(cellrenderertext, "text", 0)
+    def on_combobox_changed(self, combobox):
+        treeiter = combobox.get_active_iter()
+        model = combobox.get_model()
 
+        print("ComboBox selected item: %s" % (model[treeiter][0]))
+
+window = ComboBox()
 window.show_all()
 
 Gtk.main()

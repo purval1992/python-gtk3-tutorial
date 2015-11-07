@@ -2,48 +2,51 @@
 
 from gi.repository import Gtk
 
-def on_show_heading_change(checkbutton):
-    calendar.set_property("show-heading", checkbutton.get_active())
+class Calendar(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-def on_show_days_change(checkbutton):
-    calendar.set_property("show-day-names", checkbutton.get_active())
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=2)
+        self.add(hbox)
 
-def on_prevent_month_change(checkbutton):
-    calendar.set_property("no-month-change", checkbutton.get_active())
+        self.calendar = Gtk.Calendar()
+        hbox.pack_start(self.calendar, True, True, 0)
 
-def on_show_weeks_change(checkbutton):
-    calendar.set_property("show-week-numbers", checkbutton.get_active())
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
+        hbox.pack_start(vbox, False, False, 0)
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+        checkbuttonHeading = Gtk.CheckButton(label="Show Heading")
+        checkbuttonHeading.set_active(True)
+        checkbuttonHeading.connect("toggled", self.on_show_heading_change)
+        vbox.pack_start(checkbuttonHeading, False, False, 0)
 
-hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=2)
-window.add(hbox)
+        checkbuttonDayNames = Gtk.CheckButton(label="Show Day Names")
+        checkbuttonDayNames.set_active(True)
+        checkbuttonDayNames.connect("toggled", self.on_show_days_change)
+        vbox.pack_start(checkbuttonDayNames, False, False, 0)
 
-calendar = Gtk.Calendar()
-hbox.pack_start(calendar, True, True, 0)
+        checkbuttonPreventChange = Gtk.CheckButton(label="Prevent Month/Year Change")
+        checkbuttonPreventChange.connect("toggled", self.on_prevent_month_change)
+        vbox.pack_start(checkbuttonPreventChange, False, False, 0)
 
-vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
-hbox.pack_start(vbox, False, False, 0)
+        checkbuttonShowWeeks = Gtk.CheckButton(label="Show Week Numbers")
+        checkbuttonShowWeeks.connect("toggled", self.on_show_weeks_change)
+        vbox.pack_start(checkbuttonShowWeeks, False, False, 0)
 
-checkbuttonHeading = Gtk.CheckButton(label="Show Heading")
-checkbuttonHeading.set_active(True)
-checkbuttonHeading.connect("toggled", on_show_heading_change)
-vbox.pack_start(checkbuttonHeading, False, False, 0)
+    def on_show_heading_change(self, checkbutton):
+        self.calendar.set_property("show-heading", checkbutton.get_active())
 
-checkbuttonDayNames = Gtk.CheckButton(label="Show Day Names")
-checkbuttonDayNames.set_active(True)
-checkbuttonDayNames.connect("toggled", on_show_days_change)
-vbox.pack_start(checkbuttonDayNames, False, False, 0)
+    def on_show_days_change(self, checkbutton):
+        self.calendar.set_property("show-day-names", checkbutton.get_active())
 
-checkbuttonPreventChange = Gtk.CheckButton(label="Prevent Month/Year Change")
-checkbuttonPreventChange.connect("toggled", on_prevent_month_change)
-vbox.pack_start(checkbuttonPreventChange, False, False, 0)
+    def on_prevent_month_change(self, checkbutton):
+        self.calendar.set_property("no-month-change", checkbutton.get_active())
 
-checkbuttonShowWeeks = Gtk.CheckButton(label="Show Week Numbers")
-checkbuttonShowWeeks.connect("toggled", on_show_weeks_change)
-vbox.pack_start(checkbuttonShowWeeks, False, False, 0)
+    def on_show_weeks_change(self, checkbutton):
+        self.calendar.set_property("show-week-numbers", checkbutton.get_active())
 
+window = Calendar()
 window.show_all()
 
 Gtk.main()
