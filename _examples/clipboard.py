@@ -2,41 +2,44 @@
 
 from gi.repository import Gtk, Gdk
 
-def copy_text(button, action):
-    content = entry.get_text()
+class Clipboard(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-    if action == "cut":
-        entry.set_text("")
+        self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
-    clipboard.set_text(content, -1)
+        grid = Gtk.Grid()
+        self.add(grid)
 
-def paste_text(button):
-    content = clipboard.wait_for_text()
-    entry.set_text(content)
+        self.entry = Gtk.Entry()
+        grid.attach(self.entry, 0, 0, 1, 1)
 
-clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+        buttonCutText = Gtk.Button(label="Cut Text")
+        buttonCutText.connect("clicked", self.on_copy_text, "cut")
+        grid.attach(buttonCutText, 1, 0, 1, 1)
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+        buttonCopyText = Gtk.Button(label="Copy Text")
+        buttonCopyText.connect("clicked", self.on_copy_text, "copy")
+        grid.attach(buttonCopyText, 2, 0, 1, 1)
 
-grid = Gtk.Grid()
-window.add(grid)
+        buttonPasteText = Gtk.Button(label="Paste Text")
+        buttonPasteText.connect("clicked", self.on_paste_text)
+        grid.attach(buttonPasteText, 3, 0, 1, 1)
 
-entry = Gtk.Entry()
-grid.attach(entry, 0, 0, 1, 1)
+    def on_copy_text(self, button, action):
+        content = self.entry.get_text()
 
-buttonCutText = Gtk.Button(label="Cut Text")
-buttonCutText.connect("clicked", copy_text, "cut")
-grid.attach(buttonCutText, 1, 0, 1, 1)
+        if action == "cut":
+            self.entry.set_text("")
 
-buttonCopyText = Gtk.Button(label="Copy Text")
-buttonCopyText.connect("clicked", copy_text, "copy")
-grid.attach(buttonCopyText, 2, 0, 1, 1)
+        self.clipboard.set_text(content, -1)
 
-buttonPasteText = Gtk.Button(label="Paste Text")
-buttonPasteText.connect("clicked", paste_text)
-grid.attach(buttonPasteText, 3, 0, 1, 1)
+    def on_paste_text(self, button):
+        content = self.clipboard.wait_for_text()
+        self.entry.set_text(content)
 
+window = Clipboard()
 window.show_all()
 
 Gtk.main()
