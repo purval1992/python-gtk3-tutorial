@@ -3,19 +3,17 @@
 from gi.repository import Gtk
 
 window = Gtk.Window()
-window.set_default_size(600, -1)
+window.set_default_size(-1, 200)
 window.connect("destroy", Gtk.main_quit)
 
 headerbar = Gtk.HeaderBar()
-headerbar.set_title("Window Title")
-headerbar.set_subtitle("Some subtitle text here")
+headerbar.set_title("HeaderBar Example")
+headerbar.set_subtitle("HeaderBar Subtitle")
 headerbar.set_show_close_button(True)
-window.add(headerbar)
+window.set_titlebar(headerbar)
 
-label = Gtk.Label("Pack Start")
-headerbar.pack_start(label)
-label = Gtk.Label("Pack End")
-headerbar.pack_end(label)
+button = Gtk.Button("Open")
+headerbar.pack_start(button)
 
 window.show_all()
 
