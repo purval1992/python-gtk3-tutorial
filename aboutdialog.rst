@@ -71,6 +71,10 @@ By default, the AboutDialog positions itself in the center of the screen rather 
 
 The *window* argument should be the name of the parent window.
 
+.. note::
+
+  If not transient (parent) window is defined, GTK+ will display a warning message that a parent should be defined. When a parent window is defined, the dialog is centered in the center of the parent window, and is destroyed when the parent is destroyed.
+
 =======
 Signals
 =======

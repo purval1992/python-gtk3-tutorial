@@ -31,9 +31,14 @@ After the MessageDialog has been constructed, it can be run and destroyed with::
 
 GTK+ will loop in the ``.run()`` method until it receives a response, upon which any code that needs to be run is executed (for example, responding to the users request). After completion, the ``.destroy()`` method will remove the MessageDialog.
 
-By default a MessageDialog only has one level of text, which is set when constructing the widget. To add a second level of text use::
+Normal or markup-based text can be added to the MessageDialog via::
+
+  messagedialog.set_markup(text)
+
+By default a MessageDialog only has one level of text, which is set when constructing the widget. To add a second level of text or markup use::
 
   messagedialog.format_secondary_text(text)
+  messagedialog.format_secondary_markup(markup)
 
 When secondary text is in use, the primary text entered at construction time is made bold and enlarged. The secondary text then takes the place of the primary text. The use case for this is to provide a quick overview with the primary, and more detail with the secondary.
 
@@ -41,28 +46,25 @@ The title of the MessageDialog can be set after construction via::
 
   messagedialog.set_title(title)
 
-A MessageDialog widget already comes pre-packed with several :doc:`box` containers which give it the correct shape and padding. These are known as the content area and the action area. The content area is the place where you add other widgets. The action area is the place where the buttons on the Dialog are placed. Both of these can be retrieved using::
+A MessageDialog should also be attached to a parent::
 
-  content_area = messagedialog.get_content_area()
-  action_area = messagedialog.get_action_area()
-
-The box can then be added to or manipulated using the methods found on the :doc:`box` page.
-
-A MessageDialog should also be attached to a parent, which ensures the dialog is positioned correctly over the window::
-
-  messagedialog.set_parent(parent)
+  messagedialog.set_transient_for(parent)
 
 The *parent* value is the name of the parent window which called the MessageDialog.
 
+.. note::
+
+  If not transient (parent) window is defined, GTK+ will display a warning message that a parent should be defined. When a parent window is defined, the dialog is centered in the center of the parent window, and is destroyed when the parent is destroyed.
+
 Buttons are attached to the MessageDialog with the method::
 
-  messagedialog.add_button(button, response_id)
+  messagedialog.add_button(label, response)
 
-The *button* value should be set to a string of text identifying the function of the button. The response indicates the response the button emits.
+The *button* value should be set to a string of text identifying the function of the button. The *response* indicates the response the button emits.
 
 Alternatively, multiple buttons can be added to the MessageDialog in a single method::
 
-  messagedialog.add_buttons(button, response_id, ...)
+  messagedialog.add_buttons(label, response, ...)
 
 ==========
 Properties
