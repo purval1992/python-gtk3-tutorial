@@ -2,28 +2,24 @@
 
 from gi.repository import Gtk
 
-
-class FlowBoxExample(Gtk.Window):
+class FlowBox(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self)
         self.set_default_size(200, 200)
         self.connect("destroy", Gtk.main_quit)
 
         flowbox = Gtk.FlowBox()
+        flowbox.connect("child-activated", self.on_child_activated)
         self.add(flowbox)
 
-        button = Gtk.Button("Start")
-        flowbox.insert(button, 0)
+        for count in range(0, 9):
+            label = Gtk.Label("Row %i" % (count))
+            flowbox.add(label)
 
-        checkbutton1 = Gtk.CheckButton("Active")
-        flowbox.insert(checkbutton1, 1)
-        checkbutton2 = Gtk.CheckButton("Sensitive")
-        flowbox.insert(checkbutton2, 2)
+    def on_child_activated(self, flowbox, flowboxchild):
+        print("Child %i activated" % (flowboxchild.get_index()))
 
-        label = Gtk.Label("GTK+ is a multi-platform widget toolkit used to create graphical applications.")
-        flowbox.insert(label, 3)
+window = FlowBox()
+window.show_all()
 
-        self.show_all()
-
-FlowBoxExample()
 Gtk.main()

@@ -2,30 +2,24 @@
 
 from gi.repository import Gtk
 
-def row_activated(listbox, listboxrow):
-    print("Row %i activated" % listboxrow.get_index())
+class ListBox(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.set_default_size(200, -1)
+        self.connect("destroy", Gtk.main_quit)
 
-window = Gtk.Window()
-window.set_default_size(200, 200)
-window.connect("destroy", Gtk.main_quit)
+        listbox = Gtk.ListBox()
+        listbox.connect("row-activated", self.on_row_activated)
+        self.add(listbox)
 
-listbox = Gtk.ListBox()
-listbox.connect("row-activated", row_activated)
-window.add(listbox)
+        for count in range(0, 9):
+            label = Gtk.Label("Row %i" % (count))
+            listbox.add(label)
 
-label = Gtk.Label("Row 1")
-listbox.insert(label, 0)
+    def on_row_activated(self, listbox, listboxrow):
+        print("Row %i activated" % (listboxrow.get_index()))
 
-button = Gtk.Button(label="Row 2")
-listbox.insert(button, 1)
-
-grid = Gtk.Grid()
-listbox.insert(grid, 2)
-label = Gtk.Label("Row 3")
-grid.attach(label, 0, 0, 1, 1)
-checkbutton = Gtk.CheckButton()
-grid.attach(checkbutton, 1, 0, 1, 1)
-
+window = ListBox()
 window.show_all()
 
 Gtk.main()
