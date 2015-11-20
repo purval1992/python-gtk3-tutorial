@@ -9,11 +9,11 @@ class Frame(Gtk.Window):
         self.set_border_width(5)
         self.connect("destroy", Gtk.main_quit)
 
-        label = Gtk.Label("Label in a Frame")
-
         frame = Gtk.Frame(label="Frame")
-        frame.add(label)
         self.add(frame)
+
+        label = Gtk.Label("Label in a Frame")
+        frame.add(label)
 
 window = Frame()
 window.show_all()

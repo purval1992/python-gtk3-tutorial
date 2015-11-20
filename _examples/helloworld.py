@@ -2,19 +2,19 @@
 
 from gi.repository import Gtk
 
-def close_hello_world(widget):
-    Gtk.main_quit()
-    
-def print_hello_world(widget):
-    print("Hello World")
+class HelloWorld(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-window = Gtk.Window()
-window.connect("destroy", close_hello_world)
-        
-button = Gtk.Button("Click here")
-button.connect("clicked", print_hello_world)
-window.add(button)
-        
+        button = Gtk.Button("Click Here")
+        button.connect("clicked", self.on_button_clicked)
+        self.add(button)
+
+    def on_button_clicked(self, button):
+        print("Hello, World!")
+
+window = HelloWorld()
 window.show_all()
 
 Gtk.main()

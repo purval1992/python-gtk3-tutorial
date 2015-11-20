@@ -9,15 +9,15 @@ class AspectFrame(Gtk.Window):
         self.set_border_width(5)
         self.connect("destroy", Gtk.main_quit)
 
-        label = Gtk.Label("Label in an AspectFrame")
-
         frame = Gtk.AspectFrame(label="AspectFrame",
                                 xalign=0.5,
                                 yalign=0.5,
                                 ratio=1,
                                 obey_child=False)
-        frame.add(label)
         self.add(frame)
+
+        label = Gtk.Label("Label in an AspectFrame")
+        frame.add(label)
 
 window = AspectFrame()
 window.show_all()

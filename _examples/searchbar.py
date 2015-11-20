@@ -2,34 +2,36 @@
 
 from gi.repository import Gtk, Gdk
 
-def find_event(widget, event=None):
-    mod = Gtk.accelerator_get_label(event.keyval, event.state)
+class SearchBar(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.set_default_size(250, -1)
+        self.connect("key-press-event", self.on_key_event)
+        self.connect("destroy", Gtk.main_quit)
 
-    if mod == "Ctrl+F" or mod == "Ctrl+Mod2+F":
-        if searchbar.get_search_mode():
-            searchbar.set_search_mode(False)
-        else:
-            searchbar.set_search_mode(True)
+        grid = Gtk.Grid()
+        self.add(grid)
 
-window = Gtk.Window()
-window.set_default_size(250, -1)
-window.connect("key-press-event", find_event)
-window.connect("destroy", Gtk.main_quit)
+        label = Gtk.Label("Press Control+F to initiate find")
+        grid.attach(label, 0, 0, 1, 1)
 
-grid = Gtk.Grid()
-window.add(grid)
+        self.searchbar = Gtk.SearchBar()
+        grid.attach(self.searchbar, 0, 1, 1, 1)
 
-label = Gtk.Label("Press Control+F to initiate find")
-label.set_size_request(100, 100)
-grid.attach(label, 0, 0, 1, 1)
+        searchentry = Gtk.SearchEntry()
+        self.searchbar.connect_entry(searchentry)
+        self.searchbar.add(searchentry)
 
-searchbar = Gtk.SearchBar()
-grid.attach(searchbar, 0, 1, 1, 1)
+    def on_key_event(self, widget, event):
+        mod = Gtk.accelerator_get_label(event.keyval, event.state)
 
-searchentry = Gtk.SearchEntry()
-searchbar.connect_entry(searchentry)
-searchbar.add(searchentry)
+        if mod == "Ctrl+F" or mod == "Ctrl+Mod2+F":
+            if self.searchbar.get_search_mode():
+                self.searchbar.set_search_mode(False)
+            else:
+                self.searchbar.set_search_mode(True)
 
+window = SearchBar()
 window.show_all()
 
 Gtk.main()
