@@ -2,29 +2,30 @@
 
 from gi.repository import Gtk
 
-def reveal_child(button):
-    if revealer.get_reveal_child():
-        revealer.set_reveal_child(False)
-    else:
-        revealer.set_reveal_child(True)
+class Revealer(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+        grid = Gtk.Grid()
+        self.add(grid)
 
-grid = Gtk.Grid()
-window.add(grid)
+        self.revealer = Gtk.Revealer()
+        self.revealer.set_reveal_child(True)
+        grid.attach(self.revealer, 0, 0, 1, 1)
 
-revealer = Gtk.Revealer()
-revealer.set_reveal_child(True)
-grid.attach(revealer, 0, 0, 1, 1)
+        label = Gtk.Label("Label in a Revealer")
+        self.revealer.add(label)
 
-label = Gtk.Label("Label contained in a Revealer widget")
-revealer.add(label)
+        button = Gtk.Button("Reveal")
+        button.connect("clicked", self.on_reveal_clicked)
+        grid.attach(button, 0, 1, 1, 1)
 
-button = Gtk.Button("Reveal")
-button.connect("clicked", reveal_child)
-grid.attach(button, 0, 1, 1, 1)
+    def on_reveal_clicked(self, button):
+        reveal = self.revealer.get_reveal_child()
+        self.revealer.set_reveal_child(not reveal)
 
+window = Revealer()
 window.show_all()
 
 Gtk.main()

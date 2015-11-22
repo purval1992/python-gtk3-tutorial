@@ -2,17 +2,21 @@
 
 from gi.repository import Gtk
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+class Expander(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.set_default_size(200, -1)
+        self.connect("destroy", Gtk.main_quit)
 
-expander = Gtk.Expander(label="Expander")
-expander.set_resize_toplevel(True)
-window.add(expander)
+        expander = Gtk.Expander(label="Expander")
+        expander.set_resize_toplevel(True)
+        self.add(expander)
 
-button = Gtk.Button(label="Button")
-button.set_size_request(100, 100)
-expander.add(button)
+        label = Gtk.Label("Label in an Expander")
+        label.set_size_request(200, 200)
+        expander.add(label)
 
+window = Expander()
 window.show_all()
 
 Gtk.main()
