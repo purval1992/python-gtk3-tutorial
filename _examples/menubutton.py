@@ -2,23 +2,24 @@
 
 from gi.repository import Gtk
 
-window = Gtk.Window()
-window.set_default_size(50, 50)
-window.connect("destroy", Gtk.main_quit)
+class MenuButton(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-menubutton = Gtk.MenuButton()
-window.add(menubutton)
+        menubutton = Gtk.MenuButton("MenuButton")
+        self.add(menubutton)
 
-menu = Gtk.Menu()
-menubutton.set_popup(menu)
+        menu = Gtk.Menu()
+        menubutton.set_popup(menu)
 
-count = 1
-while count < 6:
-    menuitem = Gtk.MenuItem("Item %s" % count)
-    menu.append(menuitem)
-    menuitem.show()
-    count += 1
+        for count in range(1, 6):
+            menuitem = Gtk.MenuItem("Item %i" % (count))
+            menu.append(menuitem)
 
+        menu.show_all()
+
+window = MenuButton()
 window.show_all()
 
 Gtk.main()
