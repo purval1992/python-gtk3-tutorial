@@ -114,6 +114,23 @@ The *purpose* should be set to one of the following values:
 * ``Gtk.InputPurpose.PASSWORD``
 * ``Gtk.InputPurpose.PIN``
 
+Hints are also available which allow the input to be tailored as required. This is done via::
+
+  entry.set_input_hints(hints)
+
+The *hints* value can be set to one of:
+
+* ``Gtk.InputHint.NONE`` - no special behaviour.
+* ``Gtk.InputHint.SPELLCHECK`` - suggest spell checking for errors.
+* ``Gtk.InputHint.NO_SPELLCHECK`` - suggest no spell checking takes place.
+* ``Gtk.InputHint.WORD_COMPLETION`` - suggestion word completion should be used.
+* ``Gtk.InputHint.LOWERCASE`` - suggest to lowercase all text.
+* ``Gtk.InputHint.UPPERCASE_CHARS`` - suggest to capitalise all text.
+* ``Gtk.InputHint.UPPERCASE_WORDS`` - suggest to capitalise first letter in all words.
+* ``Gtk.InputHint.UPPERCASE_SENTENCES`` - suggest to capitalise first word in each sentence.
+* ``Gtk.InputHint.INHIBIT_OSK`` - suggest onscreen keyboard not be shown.
+* ``Gtk.InputHint.VERTICAL_WRITING`` - text is vertical.
+
 =======
 Signals
 =======
