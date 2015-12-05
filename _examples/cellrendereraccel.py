@@ -2,41 +2,45 @@
 
 from gi.repository import Gtk
 
-def accel_edited(cellrendereraccel, path, key, mods, hwcode):
-    accelerator = Gtk.accelerator_name(key, mods)
-    liststore[path][1] = accelerator
+class CellRendererAccel(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-def accel_cleared(cellrendereraccel, path):
-    liststore[path][1] = "None"
+        self.liststore = Gtk.ListStore(str, str)
+        self.liststore.append(["New", "<Primary>n"])
+        self.liststore.append(["Open", "<Primary>o"])
+        self.liststore.append(["Save", "<Primary>s"])
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+        treeview = Gtk.TreeView()
+        treeview.set_model(self.liststore)
+        self.add(treeview)
 
-liststore = Gtk.ListStore(str, str)
-liststore.append(["New", "<Primary>n"])
-liststore.append(["Open", "<Primary>o"])
-liststore.append(["Save", "<Primary>s"])
+        cellrenderertext = Gtk.CellRendererText()
 
-treeview = Gtk.TreeView(model=liststore)
-window.add(treeview)
+        treeviewcolumn = Gtk.TreeViewColumn("Action")
+        treeview.append_column(treeviewcolumn)
+        treeviewcolumn.pack_start(cellrenderertext, True)
+        treeviewcolumn.add_attribute(cellrenderertext, "text", 0)
 
-treeviewcolumn = Gtk.TreeViewColumn("Action")
-treeview.append_column(treeviewcolumn)
+        cellrendereraccel = Gtk.CellRendererAccel()
+        cellrendereraccel.set_property("editable", True)
+        cellrendereraccel.connect("accel-edited", self.on_accel_edited)
+        cellrendereraccel.connect("accel-cleared", self.on_accel_cleared)
 
-cellrenderertext = Gtk.CellRendererText()
-treeviewcolumn.pack_start(cellrenderertext, True)
-treeviewcolumn.add_attribute(cellrenderertext, "text", 0)
+        treeviewcolumn = Gtk.TreeViewColumn("Accelerator")
+        treeview.append_column(treeviewcolumn)
+        treeviewcolumn.pack_start(cellrendereraccel, True)
+        treeviewcolumn.add_attribute(cellrendereraccel, "text", 1)
 
-treeviewcolumn = Gtk.TreeViewColumn("Accelerator")
-treeview.append_column(treeviewcolumn)
+    def on_accel_edited(self, cellrendereraccel, path, key, mods, hwcode):
+        accelerator = Gtk.accelerator_name(key, mods)
+        self.liststore[path][1] = accelerator
 
-cellrendereraccel = Gtk.CellRendererAccel()
-cellrendereraccel.set_property("editable", True)
-cellrendereraccel.connect("accel-edited", accel_edited)
-cellrendereraccel.connect("accel-cleared", accel_cleared)
-treeviewcolumn.pack_start(cellrendereraccel, True)
-treeviewcolumn.add_attribute(cellrendereraccel, "text", 1)
+    def on_accel_cleared(self, cellrendereraccel, path):
+        self.liststore[path][1] = "None"
 
+window = CellRendererAccel()
 window.show_all()
 
 Gtk.main()
