@@ -2,32 +2,40 @@
 
 from gi.repository import Gtk
 
-def cell_edited(cellrenderertext, treepath, text):
-    liststore[treepath][1] = text
+class CellRendererText(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+        self.liststore = Gtk.ListStore(str, str)
+        self.liststore.append(["Fedora", "http://fedoraproject.org/"])
+        self.liststore.append(["Ubuntu", "http://www.ubuntu.com/"])
+        self.liststore.append(["Slackware", "http://www.slackware.com/"])
 
-liststore = Gtk.ListStore(str, str)
-liststore.append(["Fedora", "http://fedoraproject.org/"])
-liststore.append(["Ubuntu", "http://www.ubuntu.com/"])
-liststore.append(["Slackware", "http://www.slackware.com/"])
+        treeview = Gtk.TreeView()
+        treeview.set_model(self.liststore)
+        self.add(treeview)
 
-treeview = Gtk.TreeView(model=liststore)
-treeviewcolumn = Gtk.TreeViewColumn("Distribution")
-treeview.append_column(treeviewcolumn)
-cellrenderertext = Gtk.CellRendererText()
-treeviewcolumn.pack_start(cellrenderertext, True)
-treeviewcolumn.add_attribute(cellrenderertext, "text", 0)
-treeviewcolumn = Gtk.TreeViewColumn("Website")
-treeview.append_column(treeviewcolumn)
-cellrenderertext = Gtk.CellRendererText()
-cellrenderertext.set_property("editable", True)
-cellrenderertext.connect("edited", cell_edited)
-treeviewcolumn.pack_start(cellrenderertext, True)
-treeviewcolumn.add_attribute(cellrenderertext, "text", 1)
-window.add(treeview)
+        cellrenderertext = Gtk.CellRendererText()
 
+        treeviewcolumn = Gtk.TreeViewColumn("Distribution")
+        treeviewcolumn.pack_start(cellrenderertext, True)
+        treeviewcolumn.add_attribute(cellrenderertext, "text", 0)
+        treeview.append_column(treeviewcolumn)
+
+        cellrenderertext = Gtk.CellRendererText()
+        cellrenderertext.set_property("editable", True)
+        cellrenderertext.connect("edited", self.on_cell_edited)
+
+        treeviewcolumn = Gtk.TreeViewColumn("Website")
+        treeviewcolumn.pack_start(cellrenderertext, True)
+        treeviewcolumn.add_attribute(cellrenderertext, "text", 1)
+        treeview.append_column(treeviewcolumn)
+
+    def on_cell_edited(self, cellrenderertext, treepath, text):
+        self.liststore[treepath][1] = text
+
+window = CellRendererText()
 window.show_all()
 
 Gtk.main()

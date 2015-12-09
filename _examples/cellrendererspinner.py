@@ -1,46 +1,50 @@
 #!/usr/bin/env python3
 
-from gi.repository import Gtk, GObject
+from gi.repository import Gtk
+from gi.repository import GObject
 
-def pulse_spinner():
-    for item in liststore:
-        if item[1] == True:
-            if item[2] == 12:
-                item[2] = 0
-            else:
-                item[2] += 1
+class CellRendererSpinner(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-    cellrendererspinner.set_property("pulse", item[2])
+        self.liststore = Gtk.ListStore(str, bool, int)
+        self.liststore.append(["Copying files", True,  0])
+        self.liststore.append(["Downloading access logs", False, 0])
+        self.liststore.append(["Connecting to server", True, 0])
 
-    return True
+        treeview = Gtk.TreeView()
+        treeview.set_model(self.liststore)
+        self.add(treeview)
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+        cellrenderertext = Gtk.CellRendererText()
+        self.cellrendererspinner = Gtk.CellRendererSpinner()
 
-liststore = Gtk.ListStore(str, bool, int)
-liststore.append(["Copying files", True,  0])
-liststore.append(["Downloading access logs", False, 0])
-liststore.append(["Connecting to server", True, 0])
+        treeviewcolumn = Gtk.TreeViewColumn("Activity")
+        treeview.append_column(treeviewcolumn)
+        treeviewcolumn.pack_start(cellrenderertext, False)
+        treeviewcolumn.add_attribute(cellrenderertext, "text", 0)
 
-treeview = Gtk.TreeView(model=liststore)
-window.add(treeview)
+        treeviewcolumn = Gtk.TreeViewColumn("Status")
+        treeview.append_column(treeviewcolumn)
+        treeviewcolumn.pack_start(self.cellrendererspinner, False)
+        treeviewcolumn.add_attribute(self.cellrendererspinner, "active", 1)
 
-treeviewcolumn = Gtk.TreeViewColumn("Activity")
-treeview.append_column(treeviewcolumn)
+    def on_spinner_pulse(self):
+        for item in self.liststore:
+            if item[1]:
+                if item[2] == 12:
+                    item[2] = 0
+                else:
+                    item[2] += 1
 
-cellrenderertext = Gtk.CellRendererText()
-treeviewcolumn.pack_start(cellrenderertext, False)
-treeviewcolumn.add_attribute(cellrenderertext, "text", 0)
+        self.cellrendererspinner.set_property("pulse", item[2])
 
-treeviewcolumn = Gtk.TreeViewColumn("Status")
-treeview.append_column(treeviewcolumn)
+        return True
 
-cellrendererspinner = Gtk.CellRendererSpinner()
-treeviewcolumn.pack_start(cellrendererspinner, False)
-treeviewcolumn.add_attribute(cellrendererspinner, "active", 1)
-
+window = CellRendererSpinner()
 window.show_all()
 
-GObject.timeout_add(100, pulse_spinner)
+GObject.timeout_add(100, window.on_spinner_pulse)
 
 Gtk.main()
