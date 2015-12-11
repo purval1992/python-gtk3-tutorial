@@ -2,16 +2,23 @@
 
 from gi.repository import Gtk
 
-def display_value(volumebutton, value):
-    print("VolumeButton value: %0.2f" % value)
+class VolumeButton(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.set_default_size(200, 200)
+        self.connect("destroy", Gtk.main_quit)
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+        grid = Gtk.Grid()
+        self.add(grid)
 
-volumebutton = Gtk.VolumeButton()
-volumebutton.connect("value-changed", display_value)
-window.add(volumebutton)
+        volumebutton = Gtk.VolumeButton()
+        volumebutton.connect("value-changed", self.on_volume_button_changed)
+        grid.attach(volumebutton, 0, 0, 1, 1)
 
+    def on_volume_button_changed(self, volumebutton, value):
+        print("VolumeButton value: %0.2f" % (value))
+
+window = VolumeButton()
 window.show_all()
 
 Gtk.main()
