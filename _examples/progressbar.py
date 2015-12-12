@@ -2,25 +2,28 @@
 
 from gi.repository import Gtk, GObject
 
-def update_progressbar():
-    fraction = progressbar.get_fraction()
+class ProgressBar(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-    if fraction < 1.0:
-        progressbar.set_fraction(fraction + 0.1)
-    else:
-        progressbar.set_fraction(0.0)
+        self.progressbar = Gtk.ProgressBar()
+        self.progressbar.set_show_text(True)
+        self.add(self.progressbar)
 
-    return True
+        GObject.timeout_add(500, self.update_progressbar)
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+    def update_progressbar(self):
+        fraction = self.progressbar.get_fraction() + 0.1
 
-progressbar = Gtk.ProgressBar()
-progressbar.set_show_text(True)
-window.add(progressbar)
+        if fraction <= 1.0:
+            self.progressbar.set_fraction(fraction)
+        else:
+            self.progressbar.set_fraction(0.0)
 
+        return True
+
+window = ProgressBar()
 window.show_all()
-
-GObject.timeout_add(1000, update_progressbar)
 
 Gtk.main()
