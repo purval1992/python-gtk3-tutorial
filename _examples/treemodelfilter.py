@@ -11,57 +11,61 @@ products = (("Apple", "Fruit", "£0.20"),
             ("Pineapple", "Fruit", "£0.75"),
            )
 
-def category_changed(combobox):
-    treemodelfilter.refilter()
+class TreeModelFilter(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-def filter_visible(model, treeiter, data):
-    show = False
+        grid = Gtk.Grid()
+        grid.set_row_spacing(5)
+        self.add(grid)
 
-    if model[treeiter][1] == combobox.get_active_text():
-        show = True
-    elif combobox.get_active_text() == "All":
-        show = True
+        scrolledwindow = Gtk.ScrolledWindow()
+        scrolledwindow.set_vexpand(True)
+        scrolledwindow.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
+        grid.attach(scrolledwindow, 0, 0, 1, 1)
 
-    return show
+        liststore = Gtk.ListStore(str, str, str)
+        self.treemodelfilter = liststore.filter_new()
+        self.treemodelfilter.set_visible_func(self.filter_visible, products)
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+        self.combobox = Gtk.ComboBoxText()
+        self.combobox.append_text("All")
+        self.combobox.set_active(0)
+        self.combobox.connect("changed", self.on_category_changed)
+        grid.attach(self.combobox, 0, 1, 1, 1)
 
-grid = Gtk.Grid()
-grid.set_row_spacing(5)
-window.add(grid)
+        for product in products:
+            liststore.append(product)
 
-scrolledwindow = Gtk.ScrolledWindow()
-scrolledwindow.set_vexpand(True)
-scrolledwindow.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
-grid.attach(scrolledwindow, 0, 0, 1, 1)
+            self.combobox.append_text(product[1])
 
-liststore = Gtk.ListStore(str, str, str)
-treemodelfilter = liststore.filter_new()
-treemodelfilter.set_visible_func(filter_visible, products)
+        treeview = Gtk.TreeView()
+        treeview.set_model(self.treemodelfilter)
+        scrolledwindow.add(treeview)
 
-combobox = Gtk.ComboBoxText()
-combobox.append_text("All")
-combobox.set_active(0)
-combobox.connect("changed", category_changed)
-grid.attach(combobox, 0, 1, 1, 1)
+        cellrenderertext = Gtk.CellRendererText()
+        treeviewcolumn = Gtk.TreeViewColumn("Product", cellrenderertext, text=0)
+        treeview.append_column(treeviewcolumn)
+        treeviewcolumn = Gtk.TreeViewColumn("Category", cellrenderertext, text=1)
+        treeview.append_column(treeviewcolumn)
+        treeviewcolumn = Gtk.TreeViewColumn("Price", cellrenderertext, text=2)
+        treeview.append_column(treeviewcolumn)
 
-for product in products:
-    liststore.append(product)
+    def on_category_changed(self, combobox):
+        self.treemodelfilter.refilter()
 
-    combobox.append_text(product[1])
+    def filter_visible(self, model, treeiter, data):
+        show = False
 
-treeview = Gtk.TreeView()
-treeview.set_model(treemodelfilter)
-scrolledwindow.add(treeview)
-cellrenderertext = Gtk.CellRendererText()
-treeviewcolumn = Gtk.TreeViewColumn("Product", cellrenderertext, text=0)
-treeview.append_column(treeviewcolumn)
-treeviewcolumn = Gtk.TreeViewColumn("Category", cellrenderertext, text=1)
-treeview.append_column(treeviewcolumn)
-treeviewcolumn = Gtk.TreeViewColumn("Price", cellrenderertext, text=2)
-treeview.append_column(treeviewcolumn)
+        if model[treeiter][1] == self.combobox.get_active_text():
+            show = True
+        elif self.combobox.get_active_text() == "All":
+            show = True
 
+        return show
+
+window = TreeModelFilter()
 window.show_all()
 
 Gtk.main()

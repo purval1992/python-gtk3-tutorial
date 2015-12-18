@@ -2,28 +2,31 @@
 
 from gi.repository import Gtk
 
-window = Gtk.Window()
-window.set_default_size(200, -1)
-window.connect("destroy", Gtk.main_quit)
+class TreeModelSort(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.set_default_size(200, -1)
+        self.connect("destroy", Gtk.main_quit)
 
-liststore = Gtk.ListStore(str)
-liststore.append(["Mark"])
-liststore.append(["Chris"])
-liststore.append(["Tim"])
-liststore.append(["David"])
-liststore.append(["Keith"])
+        liststore = Gtk.ListStore(str)
+        liststore.append(["Mark"])
+        liststore.append(["Chris"])
+        liststore.append(["Tim"])
+        liststore.append(["David"])
+        liststore.append(["Keith"])
 
-treemodelsort = Gtk.TreeModelSort(liststore)
-treemodelsort.set_sort_column_id(0, Gtk.SortType.ASCENDING)
+        treemodelsort = Gtk.TreeModelSort(liststore)
+        treemodelsort.set_sort_column_id(0, Gtk.SortType.ASCENDING)
 
-treeview = Gtk.TreeView()
-treeview.set_model(treemodelsort)
-window.add(treeview)
+        treeview = Gtk.TreeView()
+        treeview.set_model(treemodelsort)
+        self.add(treeview)
 
-cellrenderertext = Gtk.CellRendererText()
-treeviewcolumn = Gtk.TreeViewColumn("Name", cellrenderertext, text=0)
-treeview.append_column(treeviewcolumn)
+        cellrenderertext = Gtk.CellRendererText()
+        treeviewcolumn = Gtk.TreeViewColumn("Name", cellrenderertext, text=0)
+        treeview.append_column(treeviewcolumn)
 
+window = TreeModelSort()
 window.show_all()
 
 Gtk.main()
