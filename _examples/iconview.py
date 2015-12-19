@@ -1,25 +1,41 @@
 #!/usr/bin/env python3
 
-from gi.repository import Gtk, GdkPixbuf
+from gi.repository import Gtk
+from gi.repository import GdkPixbuf
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+distributions = ["fedora", "mandriva", "zenwalk", "knoppix", "debian"]
 
-liststore = Gtk.ListStore(GdkPixbuf.Pixbuf, str)
+class IconView(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-iconview = Gtk.IconView(model=liststore)
-iconview.set_pixbuf_column(0)
-iconview.set_text_column(1)
-window.add(iconview)
+        self.liststore = Gtk.ListStore(str, GdkPixbuf.Pixbuf, str)
 
-image = Gtk.Image()
+        iconview = Gtk.IconView()
+        iconview.set_model(self.liststore)
+        iconview.set_text_column(0)
+        iconview.set_pixbuf_column(1)
+        iconview.set_tooltip_column(2)
+        iconview.connect("item-activated", self.on_iconview_activated)
+        self.add(iconview)
 
-for item in ["fedora", "mandriva", "zenwalk", "knoppix", "debian"]:
-    path = "../_resources/" + item + ".ico"
-    image.set_from_file(path)
-    pixbuf = image.get_pixbuf()
-    liststore.append([pixbuf, item.capitalize()])
+        image = Gtk.Image()
 
+        for item in distributions:
+            path = "../_resources/%s.ico" % (item)
+            image.set_from_file(path)
+            pixbuf = image.get_pixbuf()
+
+            name = item.capitalize()
+            tooltip = "%s tooltip example" % (name)
+
+            self.liststore.append([name, pixbuf, tooltip])
+
+    def on_iconview_activated(self, iconview, treepath):
+        print("Selected item: %s" % (self.liststore[treepath][0]))
+
+window = IconView()
 window.show_all()
 
 Gtk.main()

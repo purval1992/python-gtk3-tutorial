@@ -1,6 +1,6 @@
 IconView
 ========
-The purpose of the IconView is to displays images in thumbnail format, arranged into a grid format.
+The purpose of the IconView is to displays images in thumbnail format, arranged into a grid format. Items can be added with optional text labels and tooltips, with the ability to customise selections if required.
 
 ===========
 Constructor
@@ -24,6 +24,7 @@ To set the image, text and tooltip columns from the IconView the following calls
 
   iconview.set_pixbuf_column(column)
   iconview.set_text_column(column)
+  iconview.set_markup_column(column)
   iconview.set_tooltip_column(column)
 
 The *column* parameter indicates the column number within the ListStore, with ``0`` identifying the first column.
@@ -33,6 +34,29 @@ To set the width of the image within the IconView use::
   iconview.set_item_width(item_width)
 
 The *item_width* should be specified as an integer with the value specifying the number of pixels in width each image is.
+
+A number of permitted columns can also be defined using::
+
+  iconview.set_columns(columns)
+
+If *columns* is set to ``-1``, the number will be determined to fill the space available.
+
+The spacing defined between the icon and label text can be set in pixels by::
+
+  iconview.set_spacing(spacing)
+
+Row and column spacing can also be defined separately with::
+
+  iconview.set_row_spacing(spacing)
+  iconview.set_column_spacing(spacing)
+
+A margin value can also be set to provide a gap between the IconView frame and content::
+
+  iconview.set_margin(margin)
+
+Padding of an item can also be defined with the method::
+
+  iconview.set_item_padding(padding)
 
 To allow items within the IconView to be reordered use::
 
@@ -51,6 +75,23 @@ The default setting of the IconView prevents more than one item being selected a
   iconview.set_selection_mode(selection_mode)
 
 The *selection_mode* argument can be set to either ``Gtk.SelectionMode.NONE`` which prevents any selection, ``Gtk.SelectionMode.SINGLE`` that allows only a single item to be selected, ``Gtk.SelectionMode.BROWSE`` allows one selection however at default can allow multiple if required, or ``Gtk.SelectionMode.MULTIPLE`` which allows the user to hold down the :kbd:`Control` key to highlight multiple items.
+
+By default, items must be double-clicked to activated. This can be changed to a single-click by using::
+
+  iconview.set_activate_on_single_click(single_click)
+
+When *single_click* is set to ``True``, selecting the item will activate the item.
+
+All items within the IconView can be selected or unselected with::
+
+  iconview.select_all()
+  iconview.unselect_all()
+
+A list of selected items within the IconView can be obtained by calling::
+
+  iconview.get_selected_items()
+
+The list returned will contain TreePath objects for each item selected.
 
 =======
 Signals
