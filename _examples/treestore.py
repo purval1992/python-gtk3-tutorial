@@ -2,29 +2,34 @@
 
 from gi.repository import Gtk
 
-window = Gtk.Window()
-window.set_default_size(200, 250)
-window.connect("destroy", Gtk.main_quit)
+class TreeStore(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.set_default_size(200, -1)
+        self.connect("destroy", Gtk.main_quit)
 
-treestore = Gtk.TreeStore(str)
-dog = treestore.append(None, ["Dog"])
-treestore.append(dog, ["Fido"])
-treestore.append(dog, ["Spot"])
-cat = treestore.append(None, ["Cat"])
-treestore.append(cat, ["Ginger"])
-rabbit = treestore.append(None, ["Rabbit"])
-treestore.append(rabbit, ["Twitch"])
-treestore.append(rabbit, ["Floppy"])
+        treestore = Gtk.TreeStore(str)
+        dog = treestore.append(None, ["Dog"])
+        treestore.append(dog, ["Fido"])
+        treestore.append(dog, ["Spot"])
+        cat = treestore.append(None, ["Cat"])
+        treestore.append(cat, ["Ginger"])
+        rabbit = treestore.append(None, ["Rabbit"])
+        treestore.append(rabbit, ["Twitch"])
+        treestore.append(rabbit, ["Floppy"])
 
-treeview = Gtk.TreeView(model=treestore)
-window.add(treeview)
+        treeview = Gtk.TreeView()
+        treeview.set_model(treestore)
+        self.add(treeview)
 
-treeviewcolumn = Gtk.TreeViewColumn("Pet Names")
-treeview.append_column(treeviewcolumn)
-cellrenderertext = Gtk.CellRendererText()
-treeviewcolumn.pack_start(cellrenderertext, True)
-treeviewcolumn.add_attribute(cellrenderertext, "text", 0)
+        cellrenderertext = Gtk.CellRendererText()
 
+        treeviewcolumn = Gtk.TreeViewColumn("Pet Names")
+        treeview.append_column(treeviewcolumn)
+        treeviewcolumn.pack_start(cellrenderertext, True)
+        treeviewcolumn.add_attribute(cellrenderertext, "text", 0)
+
+window = TreeStore()
 window.show_all()
 
 Gtk.main()

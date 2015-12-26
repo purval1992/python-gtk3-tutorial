@@ -15,9 +15,13 @@ class MenuButton(Gtk.Window):
 
         for count in range(1, 6):
             menuitem = Gtk.MenuItem("Item %i" % (count))
+            menuitem.connect("activate", self.on_menuitem_activated)
             menu.append(menuitem)
 
         menu.show_all()
+
+    def on_menuitem_activated(self, menuitem):
+        print("%s Activated" % (menuitem.get_label()))
 
 window = MenuButton()
 window.show_all()

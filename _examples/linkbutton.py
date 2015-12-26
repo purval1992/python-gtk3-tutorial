@@ -2,12 +2,16 @@
 
 from gi.repository import Gtk
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+class LinkButton(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__()
+        self.connect("destroy", Gtk.main_quit)
 
-linkbutton = Gtk.LinkButton(uri="http://learngtk.org", label="LearnGTK")
-window.add(linkbutton)
+        linkbutton = Gtk.LinkButton(uri="https://programmica.com/",
+                                    label="Programmica")
+        self.add(linkbutton)
 
+window = LinkButton()
 window.show_all()
 
 Gtk.main()
