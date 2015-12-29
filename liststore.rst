@@ -9,30 +9,7 @@ The ListStore can be constructed using the following::
 
   liststore = Gtk.ListStore(data_types)
 
-The *data_types* parameter can be set to a number of supported types. These includes those from Python:
-
-* ``str``
-* ``float``
-* ``long``
-* ``int``
-* ``bool``
-* ``object``
-
-Alternatively, GTK provides the following
-
-* ``gchar``
-* ``guchar``
-* ``gboolean``
-* ``gint``
-* ``guint``
-* ``glong``
-* ``gulong``
-* ``gint64``
-* ``guint64``
-* ``gfloat``
-* ``gdouble``
-* ``gchararray``
-* ``GObject``
+The *data_types* parameter can be set to a number of supported types. These includes those from Python; ``str``, ``float``, ``long``, ``int``, ``bool``, and ``object``. Alternatively, GTK provides the following; ``gchar``, ``guchar``, ``gboolean``, ``gint``, ``guint``, ``glong``, ``gulong``, ``gint64``, ``guint64``, ``gfloat``, ``gdouble``, ``gchararray``, and ``GObject``.
 
 .. note::
 
@@ -45,7 +22,7 @@ Methods
 =======
 Values can be inserted into the ListStore in a few ways::
 
-  liststore.insert(position, [data])
+  liststore.insert([data], position)
   liststore.append([data])
   liststore.prepend([data])
 
@@ -70,6 +47,21 @@ The *position_a* and *position_b* arguments should be TreeIter objects relating 
 To reorder all the items in a ListStore call::
 
   liststore.reorder([positions])
+
+The *positions* list passes the new position of each child. The method only works on unsorted ListStore objects.
+
+An item in the ListStore can be moved before or after another item with the methods::
+
+  liststore.move_before(treeiter, position)
+  liststore.move_after(treeiter, position)
+
+The *treeiter* specifies the TreeIter object of the item to be moved, with the *position* value indicating the position of the item to be moved before or after.
+
+A TreeIter can be checked to ensure it is valid with the method::
+
+  liststore.get_iter_is_valid(treeiter)
+
+If the method returns ``False``, the passed TreeIter is not valid in the ListStore.
 
 =======
 Example
