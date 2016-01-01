@@ -2,6 +2,10 @@ CellRendererProgress
 ====================
 A CellRendererProgress allows for the displaying of a :doc:`progressbar` within a TreeView to show the status, or percentage completion of a task.
 
+.. note::
+
+  See the :doc:`cellrenderer` page for additional methods available.
+
 ===========
 Constructor
 ===========

@@ -2,6 +2,10 @@ CellRendererSpinner
 ===================
 The CellRendererSpinner provides a :doc:`spinner` widget within a TreeView, to indicate activity of a job.
 
+.. note::
+
+  See the :doc:`cellrenderer` page for additional methods available.
+
 ===========
 Constructor
 ===========

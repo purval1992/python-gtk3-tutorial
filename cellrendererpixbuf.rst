@@ -2,6 +2,10 @@ CellRendererPixbuf
 ==================
 A CellRendererPixbuf provides a way to display images and icons within a TreeView cell.
 
+.. note::
+
+  See the :doc:`cellrenderer` page for additional methods available.
+
 ===========
 Constructor
 ===========

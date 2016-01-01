@@ -2,6 +2,10 @@ CellRendererAccel
 =================
 A CellRendererAccel is used to render a keyboard accelerator into a cell. The object is editable if required and allows a user to change the accelerator by entering a new combination.
 
+.. note::
+
+  See the :doc:`cellrenderer` page for additional methods available.
+
 ===========
 Constructor
 ===========

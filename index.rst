@@ -119,6 +119,7 @@ Contents:
    treeview
    treeviewcolumn
    treeselection
+   cellrenderer
    cellrenderertext
    cellrenderertoggle
    cellrendererspinner

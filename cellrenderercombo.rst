@@ -2,6 +2,10 @@ CellRendererCombo
 =================
 A CellRendererCombo widget provides a dropdown menu within a :doc:`treeview`. The functionality is similar to that provide by a :doc:`combobox`.
 
+.. note::
+
+  See the :doc:`cellrenderer` page for additional methods available.
+
 ===========
 Constructor
 ===========

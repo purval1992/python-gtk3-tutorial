@@ -2,6 +2,10 @@ CellRendererToggle
 ==================
 When using a CellRendererToggle, it allows a widget similar to a :doc:`checkbutton` or :doc:`radiobutton` to be displayed within the TreeView.
 
+.. note::
+
+  See the :doc:`cellrenderer` page for additional methods available.
+
 ===========
 Constructor
 ===========

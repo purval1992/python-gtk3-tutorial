@@ -2,6 +2,10 @@ CellRendererText
 ================
 A CellRendereText is used to display text-only within a :doc:`treeview`. Besides basic text, there are a number of properties which can be used to control the look of the text including the font, style, size, foreground and background colours, and whether the text is editable.
 
+.. note::
+
+  See the :doc:`cellrenderer` page for additional methods available.
+
 ===========
 Constructor
 ===========
