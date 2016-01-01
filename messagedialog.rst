@@ -13,11 +13,11 @@ The MessageDialog can be constructed using the following::
 
 The *message_type* indicates the type of message which the MessageDialog will be displayed for. Setting an appropriate message type for the MessageDialog is important to ensure that the user quickly understands the context of the message. The options for this value are:
 
-* ``Gtk.MessageType.INFO``
-* ``Gtk.MessageType.WARNING``
-* ``Gtk.MessageType.QUESTION``
-* ``Gtk.MessageType.ERROR``
-* ``Gtk.MessageType.OTHER``
+* ``Gtk.MessageType.INFO`` - used to display information messages.
+* ``Gtk.MessageType.WARNING`` - used to display warning messages.
+* ``Gtk.MessageType.QUESTION`` - used to display question messages.
+* ``Gtk.MessageType.ERROR`` - used to display error messages.
+* ``Gtk.MessageType.OTHER`` - used to display other messages.
 
 The *message_format* should be set to the text which is to be displayed within the MessageDialog.
 
@@ -35,12 +35,12 @@ Normal or markup-based text can be added to the MessageDialog via::
 
   messagedialog.set_markup(text)
 
-By default a MessageDialog only has one level of text, which is set when constructing the widget. To add a second level of text or markup use::
+By default a MessageDialog only has one line of text. To add a second level of text or markup use::
 
   messagedialog.format_secondary_text(text)
   messagedialog.format_secondary_markup(markup)
 
-When secondary text is in use, the primary text entered at construction time is made bold and enlarged. The secondary text then takes the place of the primary text. The use case for this is to provide a quick overview with the primary, and more detail with the secondary.
+When secondary text is in use, the primary text entered at construction time is made bold and enlarged. The secondary text then takes the place of the primary text. The use case for this is to provide a quick overview with the primary, and a further explanation with the secondary.
 
 The title of the MessageDialog can be set after construction via::
 
@@ -54,7 +54,7 @@ The *parent* value is the name of the parent window which called the MessageDial
 
 .. note::
 
-  If not transient (parent) window is defined, GTK+ will display a warning message that a parent should be defined. When a parent window is defined, the dialog is centered in the center of the parent window, and is destroyed when the parent is destroyed.
+  If no transient (parent) window is defined, GTK+ will display a warning message that a parent should be defined. When a parent window is defined, the dialog is centered in the center of the parent window, and is destroyed when the parent is destroyed.
 
 Buttons are attached to the MessageDialog with the method::
 
@@ -64,7 +64,19 @@ The *button* value should be set to a string of text identifying the function of
 
 Alternatively, multiple buttons can be added to the MessageDialog in a single method::
 
-  messagedialog.add_buttons(label, response, ...)
+  messagedialog.add_buttons(label, response, label, response, ...)
+
+A default button can be selected on the MessageDialog with::
+
+  messagedialog.set_default_response(response)
+
+The *response* type must be defined via the added buttons, otherwise it will be ignored. It should be set appropriately such that the user does not lose any data (e.g. a delete operation), but is favourable to the purpose (e.g. a continue operation).
+
+A response can be set sensitive if required with the method::
+
+  messagedialog.set_response_sensitive(response, sensitive)
+
+When the *sensitive* parameter is set to ``False``, the defined *response* will be "greyed-out". This is not typically seen on a MessageDialog except when an additional widget is included which must be handled prior to continuing.
 
 ==========
 Properties
@@ -73,7 +85,7 @@ The message type can be set with the property::
 
   messagedialog.set_property("message-type", message_type)
 
-The *message_type* can be set to ``Gtk.MessageType.INFO``, ``Gtk.MessageType.WARNING``, ``Gtk.MessageType.QUESTION``, or ``Gtk.MessageType.ERROR`` depending on the desired output.
+The *message_type* can be set to ``Gtk.MessageType.INFO``, ``Gtk.MessageType.WARNING``, ``Gtk.MessageType.QUESTION``, ``Gtk.MessageType.ERROR``, or ``Gtk.MessageType.OTHER`` depending on the desired output.
 
 The main text of the dialog can be configured using::
 
