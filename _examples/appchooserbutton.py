@@ -2,24 +2,26 @@
 
 from gi.repository import Gtk
 
-def item_changed(appchooserbutton):
-    app_info = appchooserbutton.get_app_info()
-    display_name = app_info.get_display_name()
-    description = app_info.get_description()
+class AppChooserButton(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.set_default_size(200, -1)
+        self.connect("destroy", Gtk.main_quit)
 
-    print("Application selected")
-    print("Name:\t\t%s" % display_name)
-    print("Description:\t%s" % description)
+        appchooserbutton = Gtk.AppChooserButton(content_type="audio/flac")
+        appchooserbutton.set_show_dialog_item(True)
+        appchooserbutton.connect("changed", self.on_item_changed)
+        self.add(appchooserbutton)
 
-window = Gtk.Window()
-window.set_default_size(200, -1)
-window.connect("destroy", Gtk.main_quit)
+    def on_item_changed(self, appchooserbutton):
+        app_info = appchooserbutton.get_app_info()
+        name = app_info.get_display_name()
+        description = app_info.get_description()
 
-appchooserbutton = Gtk.AppChooserButton(content_type="audio/flac")
-appchooserbutton.set_show_dialog_item(True)
-appchooserbutton.connect("changed", item_changed)
-window.add(appchooserbutton)
+        print("Name:\t\t%s" % (name))
+        print("Description:\t%s" % (description))
 
+window = AppChooserButton()
 window.show_all()
 
 Gtk.main()

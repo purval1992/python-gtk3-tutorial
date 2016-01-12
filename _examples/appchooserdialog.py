@@ -2,17 +2,20 @@
 
 from gi.repository import Gtk
 
-appchooserdialog = Gtk.AppChooserDialog(content_type="image/png")
+class AppChooserDialog(Gtk.AppChooserDialog):
+    def __init__(self):
+        Gtk.AppChooserDialog.__init__(self, content_type="image/png")
+        self.set_title("AppChooserDialog")
+        self.connect("response", self.on_response)
 
-response = appchooserdialog.run()
+    def on_response(self, dialog, response):
+        if response == Gtk.ResponseType.OK:
+            app_info = appchooserdialog.get_app_info()
+            name = app_info.get_display_name()
+            description = app_info.get_description()
 
-if response == Gtk.ResponseType.OK:
-    app_info = appchooserdialog.get_app_info()
-    display_name = app_info.get_display_name()
-    description = app_info.get_description()
-    
-    print("Application selected")
-    print("Name:\t\t%s" % display_name)
-    print("Description:\t%s" % description)
+            print("Name:\t\t%s" % (name))
+            print("Description:\t%s" % (description))
 
-appchooserdialog.destroy()
+appchooserdialog = AppChooserDialog()
+appchooserdialog.run()

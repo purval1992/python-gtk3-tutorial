@@ -2,22 +2,24 @@
 
 from gi.repository import Gtk
 
-def application_activated(appchooserwidget, desktopappinfo):
-    app_info = appchooserwidget.get_app_info()
-    display_name = app_info.get_display_name()
-    description = app_info.get_description()
+class AppChooserWidget(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-    print("Application selected")
-    print("Name:\t\t%s" % display_name)
-    print("Description:\t%s" % description)
+        appchooserwidget = Gtk.AppChooserWidget(content_type="video/webm")
+        appchooserwidget.connect("application-activated", self.on_application_activated)
+        self.add(appchooserwidget)
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+    def on_application_activated(self, appchooserwidget, desktopappinfo):
+        app_info = appchooserwidget.get_app_info()
+        name = app_info.get_display_name()
+        description = app_info.get_description()
 
-appchooserwidget = Gtk.AppChooserWidget(content_type="video/webm")
-appchooserwidget.connect("application-activated", application_activated)
-window.add(appchooserwidget)
+        print("Name:\t\t%s" % (name))
+        print("Description:\t%s" % (description))
 
+window = AppChooserWidget()
 window.show_all()
 
 Gtk.main()
