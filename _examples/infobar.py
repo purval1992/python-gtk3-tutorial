@@ -2,50 +2,56 @@
 
 from gi.repository import Gtk
 
-def infobar_changed(button, message_type):
-    infobar.set_message_type(message_type)
-    infobar.show()
+class InfoBar(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-def infobar_response(infobar, respose_id):
-    infobar.hide()
+        grid = Gtk.Grid()
+        grid.set_row_spacing(5)
+        self.add(grid)
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+        self.infobar = Gtk.InfoBar()
+        self.infobar.set_show_close_button(True)
+        self.infobar.connect("response", self.on_infobar_response)
+        grid.attach(self.infobar, 0, 0, 1, 1)
 
-vbox = Gtk.Box()
-vbox.set_orientation(Gtk.Orientation.VERTICAL)
-vbox.set_spacing(2)
-window.add(vbox)
+        label = Gtk.Label("InfoBar content string.")
+        content = self.infobar.get_content_area()
+        content.add(label)
 
-infobar = Gtk.InfoBar()
-vbox.pack_start(infobar, True, True, 0)
-infobar.add_button("Close", Gtk.ResponseType.CLOSE)
-infobar.set_default_response(Gtk.ResponseType.CLOSE)
-infobar.connect("response", infobar_response)
+        buttonbox = Gtk.ButtonBox()
+        grid.attach(buttonbox, 0, 1, 1, 1)
 
-label = Gtk.Label("InfoBar example")
-content = infobar.get_content_area()
-content.add(label)
+        buttonInformation = Gtk.Button(label="Information")
+        buttonInformation.message_type = Gtk.MessageType.INFO
+        buttonInformation.connect("clicked", self.on_button_clicked)
+        buttonbox.add(buttonInformation)
+        buttonQuestion = Gtk.Button(label="Question")
+        buttonQuestion.message_type = Gtk.MessageType.QUESTION
+        buttonQuestion.connect("clicked", self.on_button_clicked)
+        buttonbox.add(buttonQuestion)
+        buttonWarning = Gtk.Button(label="Warning")
+        buttonWarning.message_type = Gtk.MessageType.WARNING
+        buttonWarning.connect("clicked", self.on_button_clicked)
+        buttonbox.add(buttonWarning)
+        buttonError = Gtk.Button(label="Error")
+        buttonError.message_type = Gtk.MessageType.ERROR
+        buttonError.connect("clicked", self.on_button_clicked)
+        buttonbox.add(buttonError)
+        buttonOther = Gtk.Button(label="Other")
+        buttonOther.message_type = Gtk.MessageType.OTHER
+        buttonOther.connect("clicked", self.on_button_clicked)
+        buttonbox.add(buttonOther)
 
-hbox = Gtk.Box()
-hbox.set_orientation(Gtk.Orientation.HORIZONTAL)
-hbox.set_spacing(2)
-hbox.set_homogeneous(True)
-vbox.pack_start(hbox, False, False, 0)
+    def on_button_clicked(self, button):
+        self.infobar.set_message_type(button.message_type)
+        self.infobar.show()
 
-buttonInfo = Gtk.Button(label="_Info", use_underline=True)
-buttonInfo.connect("clicked", infobar_changed, Gtk.MessageType.INFO)
-hbox.pack_start(buttonInfo, True, True, 0)
-buttonWarning = Gtk.Button(label="_Warning", use_underline=True)
-buttonWarning.connect("clicked", infobar_changed, Gtk.MessageType.WARNING)
-hbox.pack_start(buttonWarning, True, True, 0)
-buttonError = Gtk.Button(label="_Error", use_underline=True)
-buttonError.connect("clicked", infobar_changed, Gtk.MessageType.ERROR)
-hbox.pack_start(buttonError, True, True, 0)
-buttonQuestion = Gtk.Button(label="_Question", use_underline=True)
-buttonQuestion.connect("clicked", infobar_changed, Gtk.MessageType.QUESTION)
-hbox.pack_start(buttonQuestion, True, True, 0)
+    def on_infobar_response(self, infobar, respose_id):
+        self.infobar.hide()
 
+window = InfoBar()
 window.show_all()
 
 Gtk.main()
