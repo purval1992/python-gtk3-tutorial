@@ -23,7 +23,7 @@ The *label* parameter should be a string. Any other values such as integers or f
 
 To retrieve the text set on the Label call::
 
-  text = label.get_text()
+  label.get_text()
 
 If the Label should use markup tags rather than just displaying them as text, this can be enabled with::
 
@@ -33,12 +33,12 @@ The markup string, as opposed to plain text should be specified within the Label
 
   label.set_markup(markup)
 
-Markup allows the text in the Label to be customised. Some examples include:
+Markup allows the text in the Label to be customised, providing markup values similar to those used in HTML. Some examples include:
 
 * <b>Bold</b>
 * <i>Italics</i>
 * <u>Underline</u>
-* <a href="http://learngtk.org/">Link</a>
+* <a href="http://www.programmica.com/">Link</a>
 
 By default, text within the Label can not be selected by the user. This can be changed with::
 
@@ -58,6 +58,12 @@ If the Label widget is to wrap lines, it may be useful to set how many lines the
 
 The *lines* value takes an integer value as the number of lines, or ``-1`` if the number of lines is not to be set.
 
+Single line mode can also be enforced on the Label with the call::
+
+  label.set_single_line_mode(mode)
+
+When *mode* is set to ``True``, the text will not be split across multiple lines.
+
 Text can be wrapped in the label if required with::
 
   label.set_line_wrap(wrap)
@@ -73,10 +79,39 @@ The *xalign* and *yalign* properties should be a value between ``0.0`` and ``1.0
 
 The alignment can also be retrieved via::
 
-  xalign = label.get_xalign()
-  yalign = label.get_yalign()
+  label.get_xalign()
+  label.get_yalign()
 
 By default, the label alignment values are 0.5 (centered) for both horizontal and vertical planes.
+
+Text in a label can be angled, to orient it in a different direction, with the value supplied indicating an angle of orientation::
+
+  label.set_angle(angle)
+
+The *angle* parameter must be a number between ``0`` and ``360``.
+
+Mnemonic keys provide access to widgets via a keyboard shortcut, with an underscore before the key to be used. This is tied to the widget using the method::
+
+  label.set_mnemonic_widget(widget)
+
+The *widget* is another widget in the application associated with the label. Typically this is usually an :doc:`entry` or :doc:`spinbutton`.
+
+Label widgets typically expand to fit the content, however in some cases it may be suitable to set a target width and maximum width in characters with::
+
+  label.set_width_chars(width)
+  label.set_max_width_chars(max_width)
+
+As a Label can contain links, it can be configured to remember whether a link has been accessed. This is displayed similar to how a browser does, with the link changing colour::
+
+  label.set_track_visited_links(track_links)
+
+When *track_links* is set to ``True``, the tracking will be enabled for that Label widget.
+
+A URI can be obtained from the Label by calling::
+
+  label.get_current_uri()
+
+The URI returned is often used in the ``"active-link"`` signal or when querying for a :doc:`tooltip`.
 
 =======
 Signals
