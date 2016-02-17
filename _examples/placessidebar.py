@@ -3,21 +3,21 @@
 from gi.repository import Gtk
 from gi.repository import Gio
 
-def open_link(placessiderbar, location, flags):
-    location = placessidebar.get_location()
+class PlacesSidebar(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect("destroy", Gtk.main_quit)
 
-    print(GLocalFile.get_uri(location))
+        placessidebar = Gtk.PlacesSidebar()
+        placessidebar.connect("open-location", self.on_open_link)
+        self.add(placessidebar)
 
-fp = Gio.File.new_for_uri("/mnt/test")
+    def on_open_link(self, placessidebar, location, flags):
+        location = placessidebar.get_location()
 
-window = Gtk.Window()
-window.connect("destroy", Gtk.main_quit)
+        print("Opened URI: %s" % (GLocalFile.get_uri(location)))
 
-placessidebar = Gtk.PlacesSidebar()
-placessidebar.add_shortcut(fp)
-placessidebar.connect("open-location", open_link)
-window.add(placessidebar)
-
+window = PlacesSidebar()
 window.show_all()
 
 Gtk.main()
