@@ -1,14 +1,15 @@
 ToolButton
 ==========
-A ToolButton is the most basic ToolItem. It should be attached to a :doc:`toolbar`, and can be used to display :doc`stockitems`, or custom labels and icons.
+A ToolButton is the most basic ToolItem. It should be used within a :doc:`toolbar` or :doc:`toolpalette` to provide clickable buttons. Each ToolButton can contain a label and/or image however the user settings may override the settings defined by the application.
 
 ===========
 Constructor
 ===========
 The ToolButton can be constructed using the following::
 
-  toolbutton = Gtk.ToolButton(label, icon_widget)
-  toolbutton = Gtk.ToolButton(stock_id)
+  toolbutton = Gtk.ToolButton(label, icon_widget, icon_name)
+
+The *label* widget defines the string of text to be displayed on the ToolButton. In all circumstances this should be set. The *icon_widget* allows a widget such as an :doc:`image` to be added, however can be omitted if not required. The *icon_name* allows the name of an icon to be used, which is then loaded from the current theme. This may also be omitted if not needed.
 
 =======
 Methods
@@ -28,6 +29,10 @@ Alternatively, if custom :doc:`label` or :doc:`image` widgets need to be attache
   toolbutton.set_label_widget(label_widget)
   toolbutton.set_icon_widget(icon_widget)
 
+An icon name can also be defined which allows an icon from the current theme to be loaded::
+
+  toolbutton.set_icon_name(icon_name)
+
 By default, when the toolbar style is set to display text beside icons, no icons will display text. This is to ensure that only important, or frequently used icons display text, and are therefore more visible to users. This can be set with::
 
   toolbutton.set_is_important(is_important)
@@ -40,7 +45,7 @@ When *is_important* is set to ``True``, the icon text will be displayed.
 
 .. note::
 
-  It is good interface design to ensure only important items in the Toolbar have the ``.is_important()`` method set.
+  It is good interface design to ensure only important items in the Toolbar have the ``.set_is_important()`` method set.
 
 In some use cases, it may be useful to have an item set to invisible if the Toolbar is configured to either horizontal or vertical mode::
 
@@ -59,9 +64,9 @@ Signals
 =======
 The commonly used signals of an ToolButton are::
 
-  "clicked" (widget)
+  "clicked" (toolbutton)
 
-The ``"clciked"`` signal emits from the ToolButton when the user presses and then releases the mouse button. It can also occur when the item has the focus and the user presses the :kbd:`Return` button for example.
+The ``"clicked"`` signal emits from the ToolButton when the user presses and then releases the mouse button. It can also occur when the item has the focus and the user presses the :kbd:`Return` button for example.
 
 =======
 Example
