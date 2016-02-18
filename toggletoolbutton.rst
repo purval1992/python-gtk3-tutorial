@@ -12,6 +12,10 @@ The ToggleToolButton can be constructed using the following::
 =======
 Methods
 =======
+.. note::
+
+  The methods listed below only apply to this widget and those that inherit from it. For more methods, see the :doc:`toolbutton` page. For more information on widget hierarchy, see :doc:`hierarchytheory`.
+
 To flip the active or inactive state, use the method::
 
   toggletoolbutton.set_active(active)
@@ -20,7 +24,7 @@ When *active* is set to ``True``, the ToggleToolButton will appear depressed.
 
 To retrieve the current state of the ToggleToolButton call::
 
-  active = toggletoolbutton.get_active()  
+  toggletoolbutton.get_active()
 
 =======
 Signals

@@ -9,7 +9,7 @@ The ToolButton can be constructed using the following::
 
   toolbutton = Gtk.ToolButton(label, icon_widget, icon_name)
 
-The *label* widget defines the string of text to be displayed on the ToolButton. In all circumstances this should be set. The *icon_widget* allows a widget such as an :doc:`image` to be added, however can be omitted if not required. The *icon_name* allows the name of an icon to be used, which is then loaded from the current theme. This may also be omitted if not needed.
+The *label* parameter defines the string of text to be displayed on the ToolButton. In all circumstances this should be set. The *icon_widget* allows a widget such as an :doc:`image` to be added, however can be omitted if not required. The *icon_name* allows the name of an icon to be used, which is then loaded from the current theme. This may also be omitted if not needed.
 
 =======
 Methods

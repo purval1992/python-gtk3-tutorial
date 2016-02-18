@@ -7,9 +7,9 @@ Constructor
 ===========
 The RadioToolButton can be constructed using the following::
 
-  radiotoolbutton = Gtk.RadioToolButton(label, use_underline, group)
+  radiotoolbutton = Gtk.RadioToolButton(label, group)
 
-The first constructor allows creation of a RadioToolButton with custom text. This is specified via the *label* paramter. When setting the *use_underline* to ``True``, the letter proceeding the underscore in the label string will be used as a mnemonic key. Both constructors use the *group* parameter identifiying the group the RadioToolButton belongs.
+The first constructor allows creation of a RadioToolButton with custom text. This is specified via the *label* paramter. The constructor also uses the *group* parameter identifiying the group the RadioToolButton belongs.
 
 =======
 Methods
@@ -24,7 +24,28 @@ A group can be applied to the RadioToolButton via::
 
 The name of the group which the RadioToolButton is attached to can also be specified with::
 
-  group = radiotoolbutton.get_group()
+  radiotoolbutton.get_group()
+
+An active RadioToolButton can be set programatically using::
+
+  radiotoolbutton.set_active(active)
+
+If *active* is set to ``True``, the RadioToolButton will appear checked, while others in the group will be unchecked.
+
+To check whether a RadioToolButton is active use the method::
+
+  radiotoolbutton.get_active()
+
+If the method returns ``True``, the RadioToolButton in the group is currently active.
+
+=======
+Signals
+=======
+The commonly used signals of an RadioToolButton are::
+
+  "toggled" (radiotoolbutton)
+
+When the user clicks on the RadioToolButton and the state is changed to active or inactive, the ``"toggled"`` signal is emitted.
 
 =======
 Example
