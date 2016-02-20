@@ -1,6 +1,6 @@
 ActionBar
 =========
-The ActionBar widget provides a full width bar for items such as :doc:`button` and :doc:`label` widgets. It is usually placed below the application content and is commonly used in place of a :doc:`statusbar`.
+The ActionBar widget provides a full width bar for widgets such as :doc:`button` and :doc:`label` widgets. It is usually placed below the application content and is commonly used in place of a :doc:`statusbar`.
 
 ===========
 Constructor
@@ -23,4 +23,21 @@ If required, items can also be placed in the center::
 
 The center widget can also be retrieved via::
 
-  child = actionbar.get_center_widget()
+  actionbar.get_center_widget()
+
+==========
+Properties
+==========
+The property items available for use with the ActionBar are:
+
+* ``"pack-type"`` - can be set to either ``Gtk.PackType.START`` or ``Gtk.Pack_type.END`` for left or right placement of child widgets.
+* ``"position"`` - specifies the index of the child in the ActionBar.
+
+=======
+Example
+=======
+Below is an example of an ActionBar:
+
+.. literalinclude:: _examples/actionbar.py
+
+Download: :download:`ActionBar <_examples/actionbar.py>`
