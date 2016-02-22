@@ -2,23 +2,33 @@
 
 from gi.repository import Gtk
 
-filechooserdialog = Gtk.FileChooserDialog()
+class FileFilter(Gtk.FileChooserDialog):
+    def __init__(self):
+        Gtk.FileChooserDialog.__init__(self)
+        self.add_button("_Cancel", Gtk.ResponseType.CLOSE)
+        self.add_button("_Open", Gtk.ResponseType.OK)
+        self.connect("response", self.on_response)
 
-filefilter = Gtk.FileFilter()
-filefilter.set_name("All Items")
-filefilter.add_pattern("*")
-filechooserdialog.add_filter(filefilter)
-filefilter = Gtk.FileFilter()
-filefilter.set_name("Audio")
-filefilter.add_mime_type("audio/flac")
-filefilter.add_mime_type("audio/ogg")
-filechooserdialog.add_filter(filefilter)
-filefilter = Gtk.FileFilter()
-filefilter.set_name("Images")
-filefilter.add_pattern("*.png")
-filefilter.add_pattern("*.jpg")
-filefilter.add_pattern("*.bmp")
-filechooserdialog.add_filter(filefilter)
+        filefilter = Gtk.FileFilter()
+        filefilter.set_name("All Items")
+        filefilter.add_pattern("*")
+        self.add_filter(filefilter)
 
-filechooserdialog.run()
-filechooserdialog.destroy()
+        filefilter = Gtk.FileFilter()
+        filefilter.set_name("Audio")
+        filefilter.add_mime_type("audio/flac")
+        filefilter.add_mime_type("audio/ogg")
+        self.add_filter(filefilter)
+
+        filefilter = Gtk.FileFilter()
+        filefilter.set_name("Images")
+        filefilter.add_pattern("*.png")
+        filefilter.add_pattern("*.jpg")
+        filefilter.add_pattern("*.bmp")
+        self.add_filter(filefilter)
+
+    def on_response(self, filechooserdialog, response):
+        filechooserdialog.destroy()
+
+dialog = FileFilter()
+dialog.run()
