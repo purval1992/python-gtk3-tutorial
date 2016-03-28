@@ -9,3 +9,6 @@ Sphinx is the documentation generator used to develop the tutorial. Each page is
 Codebank
 
 The codebank contains working examples of basic features using GTK+ such as quit dialogs, searching text, and adding context menus, which fall outside the scope of the tutorial.
+
+created by purval patel.
+for any quearies: mail:patelpurval13@hotmail.com
