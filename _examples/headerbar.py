@@ -21,3 +21,4 @@ window = HeaderBar()
 window.show_all()
 
 Gtk.main()
+#displaying error (i.e.AttributeError: 'gi.repository.Gtk' object has no attribute 'HeaderBar')
